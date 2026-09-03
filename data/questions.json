@@ -1,0 +1,979 @@
+{
+  "_meta": {
+    "version": "0.2.0-draft",
+    "date": "2026-09-03",
+    "statut": "NON VALIDÉ — aucune question ne peut être publiée avant relecture par un moniteur agréé (FR) et un moniteur agréé (NL).",
+    "perimetre": "Permis B. Belgique. Régions WAL / BRU / VLA.",
+    "bareme": {
+      "questions": 50,
+      "seuil": 41,
+      "faute_ordinaire": -1,
+      "faute_grave": -5,
+      "abstention_sur_question_grave": -1,
+      "echec_automatique": "2 fautes graves",
+      "note": "La règle d'abstention (-1 au lieu de -5 si on ne répond pas) doit être confirmée auprès du GOCA avant d'en faire un argument commercial."
+    },
+    "champs": {
+      "id": "identifiant stable, ne jamais réutiliser",
+      "theme": "chapitre affiché à l'utilisateur",
+      "gravite": "ordinaire | grave",
+      "degre": "3 | 4 | null — degré de l'infraction si grave",
+      "faute_grave_ref": "libellé de l'item correspondant dans la liste officielle des 50 fautes graves",
+      "ref_legale": "meilleure attribution disponible — À FAIRE VALIDER, la numérotation n'a pas été vérifiée article par article",
+      "region_scope": "ALL | WAL | BRU | VLA",
+      "reponse": "index de la bonne réponse (0-based)",
+      "reponse_par_region": "remplace 'reponse' quand la bonne réponse dépend de la région",
+      "media": "null, ou brief de production du visuel — aucune image ne doit être reprise d'un tiers",
+      "tts": "texte destiné à la synthèse vocale : abréviations développées, ponctuation de respiration",
+      "revue": "points précis que le moniteur doit vérifier"
+    }
+  },
+
+  "questions": [
+
+    {
+      "id": "q15", "theme": {"fr": "Priorité", "nl": "Voorrang"}, "sous_theme": "rond-point",
+      "gravite": "ordinaire", "degre": null, "ref_legale": "AR 01/12/1975, art. 12.3.1 + signal B1",
+      "region_scope": "ALL",
+      "media": {"type": "image", "brief": "Vue conducteur à l'approche d'un rond-point à deux bandes, signal B1 (triangle pointe en bas) visible à droite, deux véhicules déjà engagés sur l'anneau.", "alt_fr": "Approche d'un rond-point signalé par un triangle pointe en bas", "alt_nl": "Nadering van een rotonde met omgekeerde driehoek"},
+      "fr": {
+        "stem": "Vous abordez ce rond-point. Un signal B1 est placé à l'entrée. Deux véhicules circulent déjà sur l'anneau.",
+        "opts": ["Vous cédez le passage aux véhicules déjà engagés sur l'anneau", "Vous conservez la priorité de droite et vous vous engagez", "Vous vous engagez si votre vitesse est inférieure à 30 km/h"],
+        "reponse": 0,
+        "why": "Le signal B1 à l'entrée retire la priorité de droite : les usagers déjà présents sur l'anneau passent en premier. Sans ce signal, la priorité de droite s'appliquerait, ce qui est extrêmement rare en Belgique."
+      },
+      "nl": {
+        "stem": "U nadert deze rotonde. Aan de inrit staat een bord B1. Twee voertuigen rijden al op de rotonde.",
+        "opts": ["U verleent voorrang aan de voertuigen die al op de rotonde rijden", "U behoudt uw voorrang van rechts en rijdt op", "U rijdt op als u trager rijdt dan 30 kilometer per uur"],
+        "reponse": 0,
+        "why": "Het bord B1 aan de inrit heft de voorrang van rechts op: wie al op de rotonde rijdt, gaat voor. Zonder dat bord zou voorrang van rechts gelden, wat in België uiterst zeldzaam is."
+      },
+      "tts": {"fr": "Vous abordez ce rond-point. Un signal B un est placé à l'entrée. Deux véhicules circulent déjà sur l'anneau.", "nl": "U nadert deze rotonde. Aan de inrit staat een bord B één. Twee voertuigen rijden al op de rotonde."},
+      "revue": ["Confirmer que la formulation n'induit pas que tous les ronds-points belges portent un B1."]
+    },
+
+    {
+      "id": "q16", "theme": {"fr": "Priorité", "nl": "Voorrang"}, "sous_theme": "tourner à gauche",
+      "gravite": "grave", "degre": 3, "faute_grave_ref": "Ne pas céder le passage au conducteur venant en sens inverse lorsqu'on tourne à gauche",
+      "ref_legale": "AR 01/12/1975, art. 19", "region_scope": "ALL",
+      "media": {"type": "image", "brief": "Vue conducteur arrêté au centre d'un carrefour, clignotant gauche, un véhicule arrive de face sur la voie opposée.", "alt_fr": "Véhicule s'apprêtant à tourner à gauche face à un véhicule venant en sens inverse", "alt_nl": "Voertuig dat links wil afslaan met tegenligger"},
+      "fr": {
+        "stem": "Vous tournez à gauche. Un véhicule arrive en sens inverse et poursuit tout droit.",
+        "opts": ["Vous lui cédez le passage", "Vous passez, vous êtes engagé dans le carrefour", "Vous passez si vous avez mis votre clignotant à temps"],
+        "reponse": 0,
+        "why": "Celui qui tourne à gauche cède toujours le passage aux usagers venant en sens inverse. Être déjà engagé ou avoir signalé sa manœuvre ne donne aucun droit. Faute grave : 5 points."
+      },
+      "nl": {
+        "stem": "U slaat links af. Een tegenligger nadert en rijdt rechtdoor.",
+        "opts": ["U verleent hem voorrang", "U rijdt door, u staat al op het kruispunt", "U rijdt door als u tijdig uw richtingaanwijzer hebt gebruikt"],
+        "reponse": 0,
+        "why": "Wie links afslaat, verleent altijd voorrang aan de tegenliggers. Al op het kruispunt staan of uw richtingaanwijzer gebruikt hebben geeft geen enkel recht. Zware fout: 5 punten."
+      },
+      "tts": {"fr": "Vous tournez à gauche. Un véhicule arrive en sens inverse et poursuit tout droit.", "nl": "U slaat links af. Een tegenligger nadert en rijdt rechtdoor."},
+      "revue": []
+    },
+
+    {
+      "id": "q17", "theme": {"fr": "Piétons", "nl": "Voetgangers"}, "sous_theme": "changement de direction",
+      "gravite": "grave", "degre": 3, "faute_grave_ref": "Lors d'un changement de direction, ne pas céder le passage aux piétons qui traversent la chaussée sur laquelle on s'engage",
+      "ref_legale": "AR 01/12/1975, art. 12.4 et 19", "region_scope": "ALL",
+      "media": {"type": "image", "brief": "Vue conducteur tournant à droite dans une rue latérale, un piéton traverse déjà cette rue latérale.", "alt_fr": "Piéton traversant la rue dans laquelle le véhicule s'engage", "alt_nl": "Voetganger die oversteekt in de straat waar het voertuig inrijdt"},
+      "fr": {
+        "stem": "Vous tournez à droite dans une rue latérale. Un piéton a commencé à traverser cette rue.",
+        "opts": ["Vous lui cédez le passage", "Vous passez devant lui, il n'y a pas de passage protégé", "Vous l'avertissez au klaxon et vous passez"],
+        "reponse": 0,
+        "why": "Lors d'un changement de direction, vous cédez le passage aux piétons qui traversent la chaussée que vous abordez, qu'il y ait un passage protégé ou non. Faute grave : 5 points."
+      },
+      "nl": {
+        "stem": "U slaat rechts af in een zijstraat. Een voetganger is die straat al aan het oversteken.",
+        "opts": ["U verleent hem voorrang", "U rijdt voor hem langs, er is geen zebrapad", "U waarschuwt hem met de claxon en rijdt door"],
+        "reponse": 0,
+        "why": "Bij het afslaan verleent u voorrang aan de voetgangers die de rijbaan oversteken waar u inrijdt, met of zonder zebrapad. Zware fout: 5 punten."
+      },
+      "tts": {"fr": "Vous tournez à droite dans une rue latérale. Un piéton a commencé à traverser cette rue.", "nl": "U slaat rechts af in een zijstraat. Een voetganger is die straat al aan het oversteken."},
+      "revue": []
+    },
+
+    {
+      "id": "q18", "theme": {"fr": "Priorité", "nl": "Voorrang"}, "sous_theme": "véhicule prioritaire",
+      "gravite": "grave", "degre": 3, "faute_grave_ref": "Ne pas dégager à l'approche d'un véhicule prioritaire utilisant son avertisseur sonore spécial",
+      "ref_legale": "AR 01/12/1975, art. 38", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "Une ambulance approche derrière vous, sirène et feux bleus en fonction. Vous êtes arrêté à un feu rouge, en tête de file.",
+        "opts": ["Vous dégagez le passage, même si vous devez franchir la ligne d'arrêt", "Vous restez immobile, le feu est rouge", "Vous reculez pour libérer l'espace"],
+        "reponse": 0,
+        "why": "Vous devez céder le passage à un véhicule prioritaire qui utilise sa sirène, quitte à franchir prudemment la ligne d'arrêt. La marche arrière n'est jamais la solution. Faute grave : 5 points."
+      },
+      "nl": {
+        "stem": "Een ziekenwagen nadert achter u, met sirene en blauwe zwaailichten. U staat vooraan voor een rood licht.",
+        "opts": ["U maakt de doorgang vrij, ook als u daarvoor over de stopstreep moet", "U blijft stilstaan, het licht staat op rood", "U rijdt achteruit om plaats te maken"],
+        "reponse": 0,
+        "why": "U moet voorrang verlenen aan een prioritair voertuig met sirene, desnoods door voorzichtig over de stopstreep te rijden. Achteruitrijden is nooit de oplossing. Zware fout: 5 punten."
+      },
+      "tts": {"fr": "Une ambulance approche derrière vous, sirène et feux bleus en fonction. Vous êtes arrêté à un feu rouge, en tête de file.", "nl": "Een ziekenwagen nadert achter u, met sirene en blauwe zwaailichten. U staat vooraan voor een rood licht."},
+      "revue": ["Vérifier la formulation sur le franchissement de la ligne d'arrêt : elle doit rester conditionnée à la sécurité."]
+    },
+
+    {
+      "id": "q19", "theme": {"fr": "Priorité", "nl": "Voorrang"}, "sous_theme": "bus",
+      "gravite": "ordinaire", "degre": null, "ref_legale": "AR 01/12/1975, art. 12.5", "region_scope": "ALL",
+      "media": {"type": "image", "brief": "Vue conducteur en agglomération, un autobus à l'arrêt sur un arrêt de bus met son clignotant gauche pour repartir.", "alt_fr": "Autobus signalant son départ d'un arrêt en agglomération", "alt_nl": "Autobus die aangeeft weg te rijden van een halte"},
+      "fr": {
+        "stem": "En agglomération, un autobus à l'arrêt met son clignotant gauche pour quitter son arrêt.",
+        "opts": ["Vous ralentissez et vous lui cédez le passage", "Vous poursuivez, vous circulez sur la chaussée", "Vous accélérez pour passer avant lui"],
+        "reponse": 0,
+        "why": "En agglomération, le conducteur doit céder le passage à l'autobus qui signale son intention de quitter son arrêt. Le bus reste tenu de ne pas créer un danger."
+      },
+      "nl": {
+        "stem": "Binnen de bebouwde kom geeft een stilstaande autobus met zijn linkerrichtingaanwijzer aan dat hij zijn halte verlaat.",
+        "opts": ["U vertraagt en verleent hem voorrang", "U rijdt door, u rijdt op de rijbaan", "U versnelt om voor hem te passeren"],
+        "reponse": 0,
+        "why": "Binnen de bebouwde kom moet de bestuurder voorrang verlenen aan de autobus die aangeeft zijn halte te verlaten. De bus mag daarbij zelf geen gevaar creëren."
+      },
+      "tts": {"fr": "En agglomération, un autobus à l'arrêt met son clignotant gauche pour quitter son arrêt.", "nl": "Binnen de bebouwde kom geeft een stilstaande autobus met zijn linkerrichtingaanwijzer aan dat hij zijn halte verlaat."},
+      "revue": ["Confirmer que la règle est limitée à l'agglomération."]
+    },
+
+    {
+      "id": "q20", "theme": {"fr": "Priorité", "nl": "Voorrang"}, "sous_theme": "manœuvre",
+      "gravite": "ordinaire", "degre": null, "ref_legale": "AR 01/12/1975, art. 12.4", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "Vous sortez d'une propriété privée pour vous engager sur la voie publique.",
+        "opts": ["Vous cédez le passage à tous les autres usagers", "Vous avez la priorité si vous venez de la droite", "Vous cédez le passage uniquement aux véhicules"],
+        "reponse": 0,
+        "why": "Sortir d'une propriété est une manœuvre : vous cédez le passage à tous les usagers, véhicules, cyclistes et piétons compris. La priorité de droite ne s'applique pas."
+      },
+      "nl": {
+        "stem": "U verlaat een privé-eigendom om de openbare weg op te rijden.",
+        "opts": ["U verleent voorrang aan alle andere weggebruikers", "U hebt voorrang als u van rechts komt", "U verleent enkel voorrang aan voertuigen"],
+        "reponse": 0,
+        "why": "Een eigendom verlaten is een manoeuvre: u verleent voorrang aan alle weggebruikers, ook fietsers en voetgangers. Voorrang van rechts geldt hier niet."
+      },
+      "tts": {"fr": "Vous sortez d'une propriété privée pour vous engager sur la voie publique.", "nl": "U verlaat een privé-eigendom om de openbare weg op te rijden."},
+      "revue": []
+    },
+
+    {
+      "id": "q21", "theme": {"fr": "Panneaux", "nl": "Verkeersborden"}, "sous_theme": "route prioritaire",
+      "gravite": "ordinaire", "degre": null, "ref_legale": "AR 01/12/1975, signal B9", "region_scope": "ALL",
+      "media": {"type": "image", "brief": "Signal B9 : losange jaune bordé de blanc, sur poteau, en bord de chaussée.", "alt_fr": "Losange jaune bordé de blanc", "alt_nl": "Gele ruit met witte rand"},
+      "fr": {
+        "stem": "Que signifie ce signal ?",
+        "opts": ["Vous circulez sur une route prioritaire", "Vous devez céder le passage au prochain carrefour", "Le stationnement est interdit au-delà du signal"],
+        "reponse": 0,
+        "why": "Le losange jaune annonce une route prioritaire : vous conservez la priorité aux carrefours suivants jusqu'au signal de fin. Il ne vous dispense pas de la prudence."
+      },
+      "nl": {
+        "stem": "Wat betekent dit bord?",
+        "opts": ["U rijdt op een voorrangsweg", "U moet voorrang verlenen aan het volgende kruispunt", "Parkeren is verboden voorbij het bord"],
+        "reponse": 0,
+        "why": "De gele ruit duidt een voorrangsweg aan: u behoudt voorrang op de volgende kruispunten tot het eindbord. Voorzichtigheid blijft verplicht."
+      },
+      "tts": {"fr": "Que signifie ce signal ?", "nl": "Wat betekent dit bord?"},
+      "revue": ["Vérifier le code du signal (B9) et l'aspect exact du visuel produit."]
+    },
+
+    {
+      "id": "q22", "theme": {"fr": "Panneaux", "nl": "Verkeersborden"}, "sous_theme": "sens interdit",
+      "gravite": "grave", "degre": 3, "faute_grave_ref": "Emprunter un sens interdit",
+      "ref_legale": "AR 01/12/1975, signal C1", "region_scope": "ALL",
+      "media": {"type": "image", "brief": "Signal C1 : disque rouge avec barre horizontale blanche, à l'entrée d'une rue étroite.", "alt_fr": "Disque rouge à barre blanche horizontale", "alt_nl": "Rode schijf met witte horizontale balk"},
+      "fr": {
+        "stem": "Ce signal est placé à l'entrée de la rue. Votre destination se trouve à 50 mètres dans cette rue.",
+        "opts": ["Vous n'y entrez pas et vous contournez", "Vous y entrez lentement sur cette courte distance", "Vous y entrez si aucun véhicule n'arrive en face"],
+        "reponse": 0,
+        "why": "Le sens interdit ne souffre aucune exception de distance ou de circulation. Y entrer revient à rouler à contresens : faute grave, 5 points."
+      },
+      "nl": {
+        "stem": "Dit bord staat aan de ingang van de straat. Uw bestemming ligt vijftig meter verder in die straat.",
+        "opts": ["U rijdt er niet in en rijdt om", "U rijdt er traag in over die korte afstand", "U rijdt er in als er geen tegenligger komt"],
+        "reponse": 0,
+        "why": "Een verboden rijrichting kent geen uitzondering voor korte afstanden of leeg verkeer. Erin rijden is spookrijden: zware fout, 5 punten."
+      },
+      "tts": {"fr": "Ce signal est placé à l'entrée de la rue. Votre destination se trouve à cinquante mètres dans cette rue.", "nl": "Dit bord staat aan de ingang van de straat. Uw bestemming ligt vijftig meter verder in die straat."},
+      "revue": []
+    },
+
+    {
+      "id": "q23", "theme": {"fr": "Vitesse", "nl": "Snelheid"}, "sous_theme": "zone 30",
+      "gravite": "grave", "degre": null, "faute_grave_ref": "Tout dépassement de la vitesse autorisée",
+      "ref_legale": "AR 01/12/1975, art. 11 + signal F4a", "region_scope": "ALL",
+      "media": {"type": "image", "brief": "Signal F4a : panneau carré bleu portant un disque de limitation à 30 et la mention ZONE.", "alt_fr": "Panneau d'entrée de zone 30", "alt_nl": "Bord begin zone 30"},
+      "fr": {
+        "stem": "Vous franchissez ce signal. Jusqu'où la limitation s'applique-t-elle ?",
+        "opts": ["Jusqu'au signal de fin de zone", "Jusqu'au prochain carrefour", "Sur 300 mètres"],
+        "reponse": 0,
+        "why": "Une limitation de zone reste valable sur toute la zone, y compris après les carrefours, jusqu'au signal de fin. Une limitation par disque isolé, elle, tombe au carrefour suivant."
+      },
+      "nl": {
+        "stem": "U rijdt dit bord voorbij. Tot waar geldt de beperking?",
+        "opts": ["Tot het bord einde zone", "Tot het volgende kruispunt", "Over driehonderd meter"],
+        "reponse": 0,
+        "why": "Een zonebeperking geldt in de hele zone, ook na kruispunten, tot het eindbord. Een losse snelheidsschijf vervalt wel op het volgende kruispunt."
+      },
+      "tts": {"fr": "Vous franchissez ce signal. Jusqu'où la limitation s'applique-t-elle ?", "nl": "U rijdt dit bord voorbij. Tot waar geldt de beperking?"},
+      "revue": ["Confirmer la règle de fin d'une limitation isolée par rapport à une limitation de zone."]
+    },
+
+    {
+      "id": "q24", "theme": {"fr": "Stationnement", "nl": "Parkeren"}, "sous_theme": "signal d'interdiction",
+      "gravite": "ordinaire", "degre": null, "ref_legale": "AR 01/12/1975, signaux E1 et E3", "region_scope": "ALL",
+      "media": {"type": "image", "brief": "Deux signaux côte à côte : disque bleu cerclé de rouge barré d'une seule diagonale, et disque bleu cerclé de rouge barré de deux diagonales croisées.", "alt_fr": "Signaux d'interdiction de stationner et d'interdiction d'arrêt", "alt_nl": "Borden parkeerverbod en stilstaan- en parkeerverbod"},
+      "fr": {
+        "stem": "Le signal de gauche ne porte qu'une seule barre diagonale. Que vous interdit-il ?",
+        "opts": ["De stationner, mais l'arrêt reste possible", "De vous arrêter et de stationner", "De circuler dans cette rue"],
+        "reponse": 0,
+        "why": "Une seule barre interdit le stationnement ; l'arrêt bref pour laisser monter ou descendre un passager reste autorisé. Deux barres croisées interdisent aussi l'arrêt."
+      },
+      "nl": {
+        "stem": "Het linkerbord heeft slechts één schuine balk. Wat verbiedt het u?",
+        "opts": ["Parkeren, stilstaan blijft toegelaten", "Stilstaan én parkeren", "In deze straat rijden"],
+        "reponse": 0,
+        "why": "Eén balk verbiedt parkeren; kort stilstaan om iemand te laten in- of uitstappen blijft toegelaten. Twee gekruiste balken verbieden ook het stilstaan."
+      },
+      "tts": {"fr": "Le signal de gauche ne porte qu'une seule barre diagonale. Que vous interdit-il ?", "nl": "Het linkerbord heeft slechts één schuine balk. Wat verbiedt het u?"},
+      "revue": ["POINT CRITIQUE : confirmer l'attribution des codes E1 et E3 et le nombre de barres. Ne pas publier tant que ce n'est pas vérifié."]
+    },
+
+    {
+      "id": "q25", "theme": {"fr": "Panneaux", "nl": "Verkeersborden"}, "sous_theme": "danger",
+      "gravite": "ordinaire", "degre": null, "ref_legale": "AR 01/12/1975, signal A23", "region_scope": "ALL",
+      "media": {"type": "image", "brief": "Signal A23 : triangle à bord rouge représentant deux enfants, implanté avant une école.", "alt_fr": "Triangle de danger représentant des enfants", "alt_nl": "Gevaarsbord met kinderen"},
+      "fr": {
+        "stem": "Vous approchez de ce signal en pleine journée. Aucun enfant n'est visible.",
+        "opts": ["Vous modérez votre vitesse et restez prêt à freiner", "Vous conservez votre vitesse, le signal ne limite rien", "Vous vous arrêtez avant le signal"],
+        "reponse": 0,
+        "why": "Un signal de danger n'impose pas de vitesse chiffrée mais oblige à adapter son allure. L'absence d'enfant visible ne change rien : le risque est qu'un enfant surgisse."
+      },
+      "nl": {
+        "stem": "U nadert dit bord overdag. Er is geen enkel kind te zien.",
+        "opts": ["U matigt uw snelheid en blijft klaar om te remmen", "U behoudt uw snelheid, het bord beperkt niets", "U stopt voor het bord"],
+        "reponse": 0,
+        "why": "Een gevaarsbord legt geen cijfersnelheid op, maar verplicht u uw snelheid aan te passen. Dat er geen kind zichtbaar is, verandert niets: het risico is net dat er plots één opduikt."
+      },
+      "tts": {"fr": "Vous approchez de ce signal en pleine journée. Aucun enfant n'est visible.", "nl": "U nadert dit bord overdag. Er is geen enkel kind te zien."},
+      "revue": []
+    },
+
+    {
+      "id": "q26", "theme": {"fr": "Panneaux", "nl": "Verkeersborden"}, "sous_theme": "obligation",
+      "gravite": "ordinaire", "degre": null, "ref_legale": "AR 01/12/1975, signaux D1", "region_scope": "ALL",
+      "media": {"type": "image", "brief": "Signal D1 : disque bleu portant une flèche blanche dirigée vers la droite, placé avant un carrefour.", "alt_fr": "Disque bleu à flèche blanche vers la droite", "alt_nl": "Blauwe schijf met witte pijl naar rechts"},
+      "fr": {
+        "stem": "Ce signal est placé avant le carrefour. Vous vouliez continuer tout droit.",
+        "opts": ["Vous devez tourner à droite", "Vous pouvez continuer tout droit, la flèche est indicative", "Vous devez céder le passage puis continuer tout droit"],
+        "reponse": 0,
+        "why": "Le disque bleu à flèche impose la direction : c'est une obligation, pas une indication. Un signal indicatif serait rectangulaire."
+      },
+      "nl": {
+        "stem": "Dit bord staat voor het kruispunt. U wilde rechtdoor rijden.",
+        "opts": ["U moet naar rechts afslaan", "U mag rechtdoor, de pijl is enkel richtinggevend", "U moet voorrang verlenen en dan rechtdoor rijden"],
+        "reponse": 0,
+        "why": "De blauwe schijf met pijl legt de richting op: het is een gebod, geen aanwijzing. Een aanwijzingsbord zou rechthoekig zijn."
+      },
+      "tts": {"fr": "Ce signal est placé avant le carrefour. Vous vouliez continuer tout droit.", "nl": "Dit bord staat voor het kruispunt. U wilde rechtdoor rijden."},
+      "revue": ["Vérifier le code D1 et la variante de flèche retenue pour le visuel."]
+    },
+
+    {
+      "id": "q27", "theme": {"fr": "Zones particulières", "nl": "Bijzondere zones"}, "sous_theme": "zone piétonne",
+      "gravite": "grave", "degre": 3, "faute_grave_ref": "Rouler plus vite que l'allure du pas dans une zone piétonne",
+      "ref_legale": "AR 01/12/1975, art. 22sexies", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "Vous êtes autorisé à circuler dans une zone piétonne pour effectuer une livraison. À quelle allure ?",
+        "opts": ["À l'allure du pas", "À 20 km/h maximum", "À 30 km/h maximum"],
+        "reponse": 0,
+        "why": "Dans une zone piétonne, même autorisé, on roule à l'allure du pas et on cède le passage aux piétons. Rouler plus vite est une faute grave : 5 points."
+      },
+      "nl": {
+        "stem": "U mag een voetgangerszone inrijden voor een levering. Aan welke snelheid?",
+        "opts": ["Stapvoets", "Maximaal twintig kilometer per uur", "Maximaal dertig kilometer per uur"],
+        "reponse": 0,
+        "why": "In een voetgangerszone rijdt u, ook als u toegelaten bent, stapvoets en verleent u voorrang aan de voetgangers. Sneller rijden is een zware fout: 5 punten."
+      },
+      "tts": {"fr": "Vous êtes autorisé à circuler dans une zone piétonne pour effectuer une livraison. À quelle allure ?", "nl": "U mag een voetgangerszone inrijden voor een levering. Aan welke snelheid?"},
+      "revue": ["Ne pas confondre zone piétonne (allure du pas) et zone résidentielle (20 km/h) : vérifier que les deux questions du corpus restent bien distinctes."]
+    },
+
+    {
+      "id": "q28", "theme": {"fr": "Autoroute", "nl": "Autosnelweg"}, "sous_theme": "vitesse",
+      "gravite": "grave", "degre": null, "faute_grave_ref": "Tout dépassement de la vitesse autorisée",
+      "ref_legale": "AR 01/12/1975, art. 11", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "Sur autoroute, en l'absence de signalisation contraire, la vitesse maximale pour une voiture est de :",
+        "opts": ["120 km/h", "130 km/h", "110 km/h"],
+        "reponse": 0,
+        "why": "120 km/h est le maximum sur autoroute en Belgique, dans les trois régions. Ce n'est pas 130 km/h comme en France."
+      },
+      "nl": {
+        "stem": "Op de autosnelweg bedraagt de maximumsnelheid voor een personenwagen, zonder andersluidende signalisatie:",
+        "opts": ["Honderdtwintig kilometer per uur", "Honderddertig kilometer per uur", "Honderdtien kilometer per uur"],
+        "reponse": 0,
+        "why": "Honderdtwintig kilometer per uur is het maximum op de Belgische autosnelweg, in de drie gewesten. Niet honderddertig zoals in Frankrijk."
+      },
+      "tts": {"fr": "Sur autoroute, en l'absence de signalisation contraire, la vitesse maximale pour une voiture est de :", "nl": "Op de autosnelweg bedraagt de maximumsnelheid voor een personenwagen, zonder andersluidende signalisatie:"},
+      "revue": []
+    },
+
+    {
+      "id": "q29", "theme": {"fr": "Vitesse", "nl": "Snelheid"}, "sous_theme": "intempéries",
+      "gravite": "ordinaire", "degre": null, "ref_legale": "AR 01/12/1975, art. 10", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "Il pleut fortement sur l'autoroute. La vitesse maximale légale est-elle abaissée ?",
+        "opts": ["Non, mais vous devez adapter votre vitesse aux circonstances", "Oui, elle passe à 100 km/h", "Oui, elle passe à 90 km/h"],
+        "reponse": 0,
+        "why": "La Belgique ne prévoit pas de limitation chiffrée spécifique à la pluie, contrairement à la France. En revanche, l'obligation d'adapter sa vitesse aux conditions reste pleine et entière, et rouler à 120 km/h sous forte pluie peut être sanctionné à ce titre."
+      },
+      "nl": {
+        "stem": "Het regent hevig op de autosnelweg. Wordt de wettelijke maximumsnelheid verlaagd?",
+        "opts": ["Nee, maar u moet uw snelheid aanpassen aan de omstandigheden", "Ja, ze zakt naar honderd kilometer per uur", "Ja, ze zakt naar negentig kilometer per uur"],
+        "reponse": 0,
+        "why": "België kent geen aparte cijfersnelheid bij regen, in tegenstelling tot Frankrijk. De verplichting om uw snelheid aan te passen aan de omstandigheden blijft wel volledig gelden, en honderdtwintig rijden bij hevige regen kan op die grond beboet worden."
+      },
+      "tts": {"fr": "Il pleut fortement sur l'autoroute. La vitesse maximale légale est-elle abaissée ?", "nl": "Het regent hevig op de autosnelweg. Wordt de wettelijke maximumsnelheid verlaagd?"},
+      "revue": ["Confirmer l'absence de limitation spécifique par temps de pluie dans les trois régions."]
+    },
+
+    {
+      "id": "q30", "theme": {"fr": "Vitesse", "nl": "Snelheid"}, "sous_theme": "excès de vitesse",
+      "gravite": "grave", "degre": null, "faute_grave_ref": "Tout dépassement de la vitesse autorisée",
+      "ref_legale": "AR 01/12/1975, art. 11", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "Vous roulez à 70 km/h dans une rue limitée à 50 km/h pour ne pas gêner la file derrière vous.",
+        "opts": ["C'est une infraction, la limitation prime", "C'est toléré si vous suivez le rythme du trafic", "C'est autorisé hors des heures de pointe"],
+        "reponse": 0,
+        "why": "Aucune circonstance ne permet de dépasser la limitation : ni le rythme du trafic, ni la pression des autres conducteurs. À l'examen, toute question de vitesse est cotée comme faute grave."
+      },
+      "nl": {
+        "stem": "U rijdt zeventig kilometer per uur in een straat waar vijftig geldt, om de file achter u niet te hinderen.",
+        "opts": ["Dat is een overtreding, de beperking primeert", "Dat wordt getolereerd als u het verkeersritme volgt", "Dat mag buiten de spitsuren"],
+        "reponse": 0,
+        "why": "Geen enkele omstandigheid laat toe de beperking te overschrijden: niet het verkeersritme, niet de druk van andere bestuurders. Op het examen wordt elke snelheidsvraag als zware fout gequoteerd."
+      },
+      "tts": {"fr": "Vous roulez à septante kilomètres à l'heure dans une rue limitée à cinquante pour ne pas gêner la file derrière vous.", "nl": "U rijdt zeventig kilometer per uur in een straat waar vijftig geldt, om de file achter u niet te hinderen."},
+      "revue": ["La synthèse vocale FR doit dire « septante » et non « soixante-dix » pour un public belge."]
+    },
+
+    {
+      "id": "q31", "theme": {"fr": "Agents et feux", "nl": "Agenten en lichten"}, "sous_theme": "agent qualifié",
+      "gravite": "grave", "degre": 3, "faute_grave_ref": "Ne pas obéir aux injonctions d'un agent qualifié",
+      "ref_legale": "AR 01/12/1975, art. 4 et 6", "region_scope": "ALL",
+      "media": {"type": "image", "brief": "Agent de police en tenue réglementaire au centre d'un carrefour, bras levé verticalement.", "alt_fr": "Agent qualifié le bras levé verticalement", "alt_nl": "Bevoegd agent met de arm verticaal geheven"},
+      "fr": {
+        "stem": "L'agent lève le bras verticalement alors que le feu est au vert dans votre direction.",
+        "opts": ["Vous vous arrêtez, l'injonction de l'agent prime sur le feu", "Vous passez, le feu est vert", "Vous passez lentement en le contournant"],
+        "reponse": 0,
+        "why": "Les injonctions d'un agent qualifié priment sur la signalisation lumineuse, qui prime elle-même sur les panneaux, qui priment sur les marquages. Ne pas obéir est une faute grave : 5 points."
+      },
+      "nl": {
+        "stem": "De agent heft zijn arm verticaal terwijl het licht in uw richting op groen staat.",
+        "opts": ["U stopt, het bevel van de agent primeert op het licht", "U rijdt door, het licht staat op groen", "U rijdt traag om hem heen"],
+        "reponse": 0,
+        "why": "Bevelen van een bevoegd agent primeren op de lichten, die op hun beurt primeren op de borden, die primeren op de wegmarkeringen. Niet gehoorzamen is een zware fout: 5 punten."
+      },
+      "tts": {"fr": "L'agent lève le bras verticalement alors que le feu est au vert dans votre direction.", "nl": "De agent heft zijn arm verticaal terwijl het licht in uw richting op groen staat."},
+      "revue": ["Vérifier l'ordre de priorité de la signalisation tel qu'il doit être enseigné."]
+    },
+
+    {
+      "id": "q32", "theme": {"fr": "Agents et feux", "nl": "Agenten en lichten"}, "sous_theme": "carrefour encombré",
+      "gravite": "ordinaire", "degre": null, "ref_legale": "AR 01/12/1975, art. 12.1 et 61", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "Le feu est vert, mais la circulation est bloquée juste après le carrefour.",
+        "opts": ["Vous attendez avant le carrefour", "Vous vous engagez, le feu est vert", "Vous vous engagez et vous vous arrêtez au milieu"],
+        "reponse": 0,
+        "why": "Un feu vert n'autorise à s'engager que si vous pouvez dégager le carrefour. S'immobiliser au milieu bloque les autres directions et constitue une infraction."
+      },
+      "nl": {
+        "stem": "Het licht staat op groen, maar het verkeer staat vast net voorbij het kruispunt.",
+        "opts": ["U wacht vóór het kruispunt", "U rijdt op, het licht staat op groen", "U rijdt op en stopt in het midden"],
+        "reponse": 0,
+        "why": "Groen licht laat u enkel toe op te rijden als u het kruispunt ook kunt vrijmaken. Middenin stilstaan blokkeert de andere richtingen en is een overtreding."
+      },
+      "tts": {"fr": "Le feu est vert, mais la circulation est bloquée juste après le carrefour.", "nl": "Het licht staat op groen, maar het verkeer staat vast net voorbij het kruispunt."},
+      "revue": []
+    },
+
+    {
+      "id": "q33", "theme": {"fr": "Agents et feux", "nl": "Agenten en lichten"}, "sous_theme": "flèche verte",
+      "gravite": "grave", "degre": 3, "faute_grave_ref": "Ne pas céder le passage lorsqu'on suit une flèche verte alors que le feu est rouge",
+      "ref_legale": "AR 01/12/1975, art. 61", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "Le feu est rouge, mais une flèche verte vous autorise à tourner à droite.",
+        "opts": ["Vous pouvez tourner en cédant le passage aux autres usagers", "Vous tournez, la flèche verte vous donne la priorité", "Vous devez attendre le feu vert"],
+        "reponse": 0,
+        "why": "La flèche verte sur feu rouge autorise le mouvement mais ne donne aucune priorité : vous cédez le passage à tous, piétons et cyclistes compris. L'oublier est une faute grave."
+      },
+      "nl": {
+        "stem": "Het licht staat op rood, maar een groene pijl laat u toe rechts af te slaan.",
+        "opts": ["U mag afslaan mits u voorrang verleent aan de andere weggebruikers", "U slaat af, de groene pijl geeft u voorrang", "U moet wachten op groen"],
+        "reponse": 0,
+        "why": "De groene pijl bij rood licht laat de beweging toe maar geeft geen voorrang: u verleent voorrang aan iedereen, ook aan voetgangers en fietsers. Dat vergeten is een zware fout."
+      },
+      "tts": {"fr": "Le feu est rouge, mais une flèche verte vous autorise à tourner à droite.", "nl": "Het licht staat op rood, maar een groene pijl laat u toe rechts af te slaan."},
+      "revue": []
+    },
+
+    {
+      "id": "q34", "theme": {"fr": "Dépassement", "nl": "Inhalen"}, "sous_theme": "visibilité",
+      "gravite": "grave", "degre": 4, "faute_grave_ref": "Dépasser à l'approche du sommet d'une côte ou dans un virage sans visibilité",
+      "ref_legale": "AR 01/12/1975, art. 17", "region_scope": "ALL",
+      "media": {"type": "image", "brief": "Vue conducteur derrière un tracteur lent, route à double sens montant vers un sommet de côte, visibilité nulle au-delà.", "alt_fr": "Véhicule lent précédant le sommet d'une côte", "alt_nl": "Traag voertuig vlak voor een helling"},
+      "fr": {
+        "stem": "Vous suivez un tracteur à 30 km/h. Vous approchez du sommet d'une côte et la ligne de démarcation est discontinue.",
+        "opts": ["Vous ne dépassez pas", "Vous dépassez, la ligne discontinue l'autorise", "Vous dépassez si aucun véhicule n'est visible"],
+        "reponse": 0,
+        "why": "Une ligne discontinue n'autorise pas à dépasser sans visibilité. Au sommet d'une côte, la visibilité est par définition insuffisante : c'est une infraction du 4e degré, la catégorie la plus lourde."
+      },
+      "nl": {
+        "stem": "U volgt een tractor aan dertig kilometer per uur. U nadert de top van een helling en de streep is onderbroken.",
+        "opts": ["U haalt niet in", "U haalt in, de onderbroken streep laat het toe", "U haalt in als er geen voertuig zichtbaar is"],
+        "reponse": 0,
+        "why": "Een onderbroken streep laat niet toe in te halen zonder zicht. Op de top van een helling is het zicht per definitie onvoldoende: dit is een overtreding van de vierde graad, de zwaarste categorie."
+      },
+      "tts": {"fr": "Vous suivez un tracteur à trente kilomètres à l'heure. Vous approchez du sommet d'une côte et la ligne de démarcation est discontinue.", "nl": "U volgt een tractor aan dertig kilometer per uur. U nadert de top van een helling en de streep is onderbroken."},
+      "revue": []
+    },
+
+    {
+      "id": "q35", "theme": {"fr": "Dépassement", "nl": "Inhalen"}, "sous_theme": "marquage",
+      "gravite": "grave", "degre": 3, "faute_grave_ref": "Franchir une ligne blanche continue",
+      "ref_legale": "AR 01/12/1975, art. 72.2", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "Une ligne blanche continue sépare les deux sens. Une voiture roule anormalement lentement devant vous.",
+        "opts": ["Vous restez derrière elle", "Vous la dépassez si la voie opposée est libre", "Vous la dépassez en empiétant le moins possible"],
+        "reponse": 0,
+        "why": "La ligne blanche continue ne peut pas être franchie, quelle que soit la lenteur du véhicule précédent ou la visibilité. Faute grave : 5 points."
+      },
+      "nl": {
+        "stem": "Een doorlopende witte streep scheidt beide rijrichtingen. Een auto rijdt abnormaal traag voor u.",
+        "opts": ["U blijft achter hem", "U haalt in als de tegenoverliggende rijstrook vrij is", "U haalt in en rijdt zo weinig mogelijk over de streep"],
+        "reponse": 0,
+        "why": "Een doorlopende witte streep mag niet worden overschreden, hoe traag het voorliggende voertuig ook rijdt en hoe goed het zicht ook is. Zware fout: 5 punten."
+      },
+      "tts": {"fr": "Une ligne blanche continue sépare les deux sens. Une voiture roule anormalement lentement devant vous.", "nl": "Een doorlopende witte streep scheidt beide rijrichtingen. Een auto rijdt abnormaal traag voor u."},
+      "revue": ["Vérifier les exceptions éventuelles (véhicule à l'arrêt, obstacle) pour que la formulation reste exacte."]
+    },
+
+    {
+      "id": "q36", "theme": {"fr": "Dépassement", "nl": "Inhalen"}, "sous_theme": "cyclistes",
+      "gravite": "grave", "degre": 3, "faute_grave_ref": "Dépasser un cycliste ou un cyclomotoriste à moins d'un mètre",
+      "ref_legale": "AR 01/12/1975, art. 40ter", "region_scope": "ALL",
+      "media": {"type": "image", "brief": "Vue conducteur dépassant un cycliste sur une route hors agglomération, sans bande cyclable.", "alt_fr": "Dépassement d'un cycliste hors agglomération", "alt_nl": "Fietser inhalen buiten de bebouwde kom"},
+      "fr": {
+        "stem": "Vous dépassez un cycliste hors agglomération. Quelle distance latérale devez-vous laisser ?",
+        "opts": ["Au moins 1,50 m", "Au moins 1 m", "Au moins 50 cm"],
+        "reponse": 0,
+        "why": "La distance latérale minimale est d'un mètre en agglomération et d'un mètre cinquante hors agglomération. Dépasser à moins d'un mètre est une faute grave."
+      },
+      "nl": {
+        "stem": "U haalt een fietser in buiten de bebouwde kom. Welke zijdelingse afstand moet u laten?",
+        "opts": ["Minstens anderhalve meter", "Minstens één meter", "Minstens vijftig centimeter"],
+        "reponse": 0,
+        "why": "De minimale zijdelingse afstand bedraagt één meter binnen de bebouwde kom en anderhalve meter erbuiten. Inhalen op minder dan één meter is een zware fout."
+      },
+      "tts": {"fr": "Vous dépassez un cycliste hors agglomération. Quelle distance latérale devez-vous laisser ?", "nl": "U haalt een fietser in buiten de bebouwde kom. Welke zijdelingse afstand moet u laten?"},
+      "revue": ["POINT CRITIQUE : confirmer les valeurs 1 m / 1,50 m et leur date d'entrée en vigueur. Vérifier aussi qu'elles sont identiques dans les trois régions."]
+    },
+
+    {
+      "id": "q37", "theme": {"fr": "Dépassement", "nl": "Inhalen"}, "sous_theme": "être dépassé",
+      "gravite": "grave", "degre": 3, "faute_grave_ref": "Accélérer ou ne pas serrer à droite alors qu'on est dépassé",
+      "ref_legale": "AR 01/12/1975, art. 16.6", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "Un véhicule entame votre dépassement sur une route à deux sens.",
+        "opts": ["Vous serrez à droite et vous n'accélérez pas", "Vous accélérez pour raccourcir sa manœuvre", "Vous freinez brusquement pour le laisser passer"],
+        "reponse": 0,
+        "why": "Celui qui est dépassé serre à droite et maintient son allure. Accélérer allonge dangereusement la manœuvre : faute grave, 5 points. Freiner brusquement est également dangereux."
+      },
+      "nl": {
+        "stem": "Een voertuig begint u in te halen op een weg met tweerichtingsverkeer.",
+        "opts": ["U houdt rechts en versnelt niet", "U versnelt om zijn manoeuvre in te korten", "U remt bruusk om hem te laten passeren"],
+        "reponse": 0,
+        "why": "Wie ingehaald wordt, houdt rechts en behoudt zijn snelheid. Versnellen verlengt het manoeuvre gevaarlijk: zware fout, 5 punten. Bruusk remmen is even gevaarlijk."
+      },
+      "tts": {"fr": "Un véhicule entame votre dépassement sur une route à deux sens.", "nl": "Een voertuig begint u in te halen op een weg met tweerichtingsverkeer."},
+      "revue": []
+    },
+
+    {
+      "id": "q38", "theme": {"fr": "Stationnement", "nl": "Parkeren"}, "sous_theme": "interdictions",
+      "gravite": "ordinaire", "degre": null, "ref_legale": "AR 01/12/1975, art. 24 et 25", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "Vous souhaitez vous garer devant une entrée carrossable clairement identifiée.",
+        "opts": ["C'est interdit, sauf si le numéro d'immatriculation du véhicule y est indiqué", "C'est autorisé si vous restez moins de quinze minutes", "C'est autorisé si l'entrée n'est manifestement pas utilisée"],
+        "reponse": 0,
+        "why": "Le stationnement devant une entrée carrossable est interdit, sauf pour le véhicule dont le numéro de plaque y est reproduit. Ni la durée ni l'apparence d'inutilisation n'y changent rien."
+      },
+      "nl": {
+        "stem": "U wil parkeren voor een duidelijk aangeduide inrit.",
+        "opts": ["Dat is verboden, tenzij de nummerplaat van het voertuig erop vermeld staat", "Dat mag als u minder dan een kwartier blijft", "Dat mag als de inrit duidelijk niet gebruikt wordt"],
+        "reponse": 0,
+        "why": "Parkeren voor een inrit is verboden, behalve voor het voertuig waarvan de nummerplaat erop is aangebracht. Noch de duur, noch de schijnbare ongebruiktheid verandert daar iets aan."
+      },
+      "tts": {"fr": "Vous souhaitez vous garer devant une entrée carrossable clairement identifiée.", "nl": "U wil parkeren voor een duidelijk aangeduide inrit."},
+      "revue": ["Confirmer la condition exacte relative au numéro d'immatriculation reproduit sur l'entrée."]
+    },
+
+    {
+      "id": "q39", "theme": {"fr": "Stationnement", "nl": "Parkeren"}, "sous_theme": "passage pour piétons",
+      "gravite": "ordinaire", "degre": null, "ref_legale": "AR 01/12/1975, art. 24", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "À quelle distance minimale d'un passage pour piétons pouvez-vous vous arrêter ou stationner, en amont de celui-ci ?",
+        "opts": ["5 mètres", "3 mètres", "10 mètres"],
+        "reponse": 0,
+        "why": "Il est interdit de s'arrêter ou de stationner à moins de 5 mètres en deçà d'un passage pour piétons : cette zone garantit la visibilité mutuelle entre le conducteur et le piéton qui s'engage."
+      },
+      "nl": {
+        "stem": "Op welke minimumafstand vóór een oversteekplaats voor voetgangers mag u stilstaan of parkeren?",
+        "opts": ["Vijf meter", "Drie meter", "Tien meter"],
+        "reponse": 0,
+        "why": "Stilstaan of parkeren binnen vijf meter vóór een zebrapad is verboden: die zone garandeert dat bestuurder en overstekende voetganger elkaar zien."
+      },
+      "tts": {"fr": "À quelle distance minimale d'un passage pour piétons pouvez-vous vous arrêter ou stationner, en amont de celui-ci ?", "nl": "Op welke minimumafstand vóór een oversteekplaats voor voetgangers mag u stilstaan of parkeren?"},
+      "revue": ["Confirmer la valeur de 5 mètres et la formulation « en deçà » utilisée par l'examen officiel."]
+    },
+
+    {
+      "id": "q40", "theme": {"fr": "Stationnement", "nl": "Parkeren"}, "sous_theme": "trottoir",
+      "gravite": "ordinaire", "degre": null, "ref_legale": "AR 01/12/1975, art. 24", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "Votre rue est étroite. Vous garez deux roues sur le trottoir pour laisser passer les autres véhicules.",
+        "opts": ["C'est interdit, sauf signalisation ou marquage l'autorisant", "C'est autorisé si un mètre reste libre pour les piétons", "C'est autorisé la nuit"],
+        "reponse": 0,
+        "why": "Le trottoir est réservé aux piétons. Le stationnement n'y est possible que là où un marquage ou un signal l'autorise expressément. L'étroitesse de la rue n'est pas une justification."
+      },
+      "nl": {
+        "stem": "Uw straat is smal. U parkeert met twee wielen op het voetpad om andere voertuigen te laten passeren.",
+        "opts": ["Dat is verboden, tenzij signalisatie of markering het toelaat", "Dat mag als er een meter vrij blijft voor voetgangers", "Dat mag 's nachts"],
+        "reponse": 0,
+        "why": "Het voetpad is voor voetgangers. Parkeren mag er enkel waar een markering of bord het uitdrukkelijk toelaat. Een smalle straat is geen rechtvaardiging."
+      },
+      "tts": {"fr": "Votre rue est étroite. Vous garez deux roues sur le trottoir pour laisser passer les autres véhicules.", "nl": "Uw straat is smal. U parkeert met twee wielen op het voetpad om andere voertuigen te laten passeren."},
+      "revue": ["Vérifier les particularités communales et régionales éventuelles en matière de stationnement sur trottoir."]
+    },
+
+    {
+      "id": "q41", "theme": {"fr": "Passage à niveau", "nl": "Overweg"}, "sous_theme": "arrêt",
+      "gravite": "grave", "degre": 4, "faute_grave_ref": "S'arrêter ou stationner sur un passage à niveau",
+      "ref_legale": "AR 01/12/1975, art. 20", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "La file est à l'arrêt juste après un passage à niveau. Vous risquez de vous immobiliser sur les voies.",
+        "opts": ["Vous attendez avant le passage à niveau", "Vous vous engagez, la file avancera", "Vous vous engagez et vous klaxonnez"],
+        "reponse": 0,
+        "why": "S'immobiliser sur un passage à niveau est une infraction du 4e degré, la catégorie la plus grave. On ne s'engage jamais sans pouvoir dégager complètement."
+      },
+      "nl": {
+        "stem": "De file staat stil net voorbij een overweg. U dreigt op de sporen tot stilstand te komen.",
+        "opts": ["U wacht vóór de overweg", "U rijdt op, de file zal wel opschuiven", "U rijdt op en toetert"],
+        "reponse": 0,
+        "why": "Stilstaan op een overweg is een overtreding van de vierde graad, de zwaarste categorie. U rijdt nooit op zonder volledig te kunnen doorrijden."
+      },
+      "tts": {"fr": "La file est à l'arrêt juste après un passage à niveau. Vous risquez de vous immobiliser sur les voies.", "nl": "De file staat stil net voorbij een overweg. U dreigt op de sporen tot stilstand te komen."},
+      "revue": []
+    },
+
+    {
+      "id": "q42", "theme": {"fr": "Passage à niveau", "nl": "Overweg"}, "sous_theme": "barrières",
+      "gravite": "grave", "degre": 4, "faute_grave_ref": "Franchir un passage à niveau fermé",
+      "ref_legale": "AR 01/12/1975, art. 20", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "Les feux rouges clignotent et les barrières commencent à descendre. Vous avez le temps de passer.",
+        "opts": ["Vous vous arrêtez", "Vous passez rapidement avant la fermeture complète", "Vous passez si vous ne voyez aucun train"],
+        "reponse": 0,
+        "why": "Dès que le signal sonore ou lumineux fonctionne ou que les barrières s'abaissent, le franchissement est interdit. Infraction du 4e degré."
+      },
+      "nl": {
+        "stem": "De rode lichten knipperen en de slagbomen beginnen te dalen. U kunt er nog net door.",
+        "opts": ["U stopt", "U rijdt er snel door vóór ze volledig gesloten zijn", "U rijdt door als u geen trein ziet"],
+        "reponse": 0,
+        "why": "Zodra het geluids- of lichtsignaal werkt of de slagbomen dalen, is oversteken verboden. Overtreding van de vierde graad."
+      },
+      "tts": {"fr": "Les feux rouges clignotent et les barrières commencent à descendre. Vous avez le temps de passer.", "nl": "De rode lichten knipperen en de slagbomen beginnen te dalen. U kunt er nog net door."},
+      "revue": []
+    },
+
+    {
+      "id": "q43", "theme": {"fr": "Piétons", "nl": "Voetgangers"}, "sous_theme": "passage protégé",
+      "gravite": "grave", "degre": 3, "faute_grave_ref": "Ne pas céder le passage aux piétons qui s'engagent sur un passage protégé",
+      "ref_legale": "AR 01/12/1975, art. 40.4bis", "region_scope": "ALL",
+      "media": {"type": "image", "brief": "Vue conducteur approchant d'un passage pour piétons, un piéton pose le pied sur la chaussée au bord du passage.", "alt_fr": "Piéton s'engageant sur un passage pour piétons", "alt_nl": "Voetganger die het zebrapad opstapt"},
+      "fr": {
+        "stem": "Un piéton pose le pied sur un passage protégé alors que vous approchez.",
+        "opts": ["Vous cédez le passage", "Vous passez, il n'a pas encore traversé la moitié", "Vous cédez le passage uniquement s'il vous regarde"],
+        "reponse": 0,
+        "why": "Vous cédez le passage dès que le piéton s'engage ou manifeste son intention de s'engager. Aucune condition de regard ou de distance parcourue n'existe. Faute grave : 5 points."
+      },
+      "nl": {
+        "stem": "Een voetganger zet zijn voet op het zebrapad terwijl u nadert.",
+        "opts": ["U verleent voorrang", "U rijdt door, hij is nog niet halfweg", "U verleent enkel voorrang als hij u aankijkt"],
+        "reponse": 0,
+        "why": "U verleent voorrang zodra de voetganger het zebrapad opstapt of zijn intentie duidelijk maakt. Er bestaat geen voorwaarde over oogcontact of afgelegde afstand. Zware fout: 5 punten."
+      },
+      "tts": {"fr": "Un piéton pose le pied sur un passage protégé alors que vous approchez.", "nl": "Een voetganger zet zijn voet op het zebrapad terwijl u nadert."},
+      "revue": []
+    },
+
+    {
+      "id": "q44", "theme": {"fr": "Piétons", "nl": "Voetgangers"}, "sous_theme": "rang d'enfants",
+      "gravite": "grave", "degre": 3, "faute_grave_ref": "Couper un rang d'enfants",
+      "ref_legale": "AR 01/12/1975, art. 44", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "Un rang scolaire traverse la chaussée devant vous. Un espace s'est creusé au milieu du groupe.",
+        "opts": ["Vous attendez que tout le rang soit passé", "Vous passez dans l'espace libre", "Vous passez lentement en klaxonnant"],
+        "reponse": 0,
+        "why": "Couper un rang d'enfants, un cortège ou une course cycliste est interdit, quel que soit l'espace disponible. Faute grave : 5 points."
+      },
+      "nl": {
+        "stem": "Een schoolrij steekt de rijbaan over voor u. Midden in de groep is een gat ontstaan.",
+        "opts": ["U wacht tot de hele rij voorbij is", "U rijdt door het gat", "U rijdt traag door terwijl u toetert"],
+        "reponse": 0,
+        "why": "Een kinderrij, een stoet of een wielerwedstrijd doorsnijden is verboden, hoe groot de opening ook is. Zware fout: 5 punten."
+      },
+      "tts": {"fr": "Un rang scolaire traverse la chaussée devant vous. Un espace s'est creusé au milieu du groupe.", "nl": "Een schoolrij steekt de rijbaan over voor u. Midden in de groep is een gat ontstaan."},
+      "revue": []
+    },
+
+    {
+      "id": "q45", "theme": {"fr": "Usagers vulnérables", "nl": "Zwakke weggebruikers"}, "sous_theme": "transport scolaire",
+      "gravite": "grave", "degre": 3, "faute_grave_ref": "Ne pas ralentir fortement à l'approche d'un véhicule de transport scolaire",
+      "ref_legale": "AR 01/12/1975, art. 39bis", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "Un véhicule de transport scolaire est à l'arrêt, signalisation en fonction, sur le côté droit de la chaussée.",
+        "opts": ["Vous ralentissez fortement et restez prêt à vous arrêter", "Vous conservez votre allure en vous écartant", "Vous vous arrêtez obligatoirement à 10 mètres"],
+        "reponse": 0,
+        "why": "À l'approche d'un transport scolaire signalé, vous devez ralentir fortement et au besoin vous arrêter. Ne pas le faire est une faute grave : 5 points."
+      },
+      "nl": {
+        "stem": "Een voertuig voor leerlingenvervoer staat stil met de signalisatie in werking, aan de rechterkant van de rijbaan.",
+        "opts": ["U vertraagt sterk en blijft klaar om te stoppen", "U behoudt uw snelheid en wijkt uit", "U moet verplicht stoppen op tien meter"],
+        "reponse": 0,
+        "why": "Bij het naderen van een aangeduid schoolvervoer moet u sterk vertragen en zo nodig stoppen. Dat niet doen is een zware fout: 5 punten."
+      },
+      "tts": {"fr": "Un véhicule de transport scolaire est à l'arrêt, signalisation en fonction, sur le côté droit de la chaussée.", "nl": "Een voertuig voor leerlingenvervoer staat stil met de signalisatie in werking, aan de rechterkant van de rijbaan."},
+      "revue": ["Vérifier la formulation exacte de l'obligation : « ralentir fortement » et non « s'arrêter systématiquement »."]
+    },
+
+    {
+      "id": "q46", "theme": {"fr": "Le véhicule", "nl": "Het voertuig"}, "sous_theme": "enfants",
+      "gravite": "grave", "degre": 3, "faute_grave_ref": "Ne pas utiliser un dispositif de retenue adapté pour un enfant de moins de 1,35 m",
+      "ref_legale": "AR 01/12/1975, art. 35", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "Vous transportez un enfant de 7 ans mesurant 1,20 m sur la banquette arrière.",
+        "opts": ["Il doit être installé dans un dispositif de retenue adapté", "La ceinture de sécurité suffit à partir de 6 ans", "La ceinture suffit à l'arrière"],
+        "reponse": 0,
+        "why": "Tout enfant de moins de 12 ans et mesurant moins de 1,35 m doit voyager dans un dispositif de retenue adapté à sa taille et à son poids. Faute grave : 5 points."
+      },
+      "nl": {
+        "stem": "U vervoert een kind van zeven jaar dat één meter twintig meet, op de achterbank.",
+        "opts": ["Het moet in een aangepast kinderbeveiligingssysteem zitten", "De gordel volstaat vanaf zes jaar", "De gordel volstaat achteraan"],
+        "reponse": 0,
+        "why": "Elk kind jonger dan twaalf jaar en kleiner dan één meter vijfendertig moet in een beveiligingssysteem zitten dat past bij zijn lengte en gewicht. Zware fout: 5 punten."
+      },
+      "tts": {"fr": "Vous transportez un enfant de sept ans mesurant un mètre vingt sur la banquette arrière.", "nl": "U vervoert een kind van zeven jaar dat één meter twintig meet, op de achterbank."},
+      "revue": ["Confirmer le double critère âge / taille et les exceptions prévues (trajets courts, taxis, troisième enfant)."]
+    },
+
+    {
+      "id": "q47", "theme": {"fr": "Usagers vulnérables", "nl": "Zwakke weggebruikers"}, "sous_theme": "trottinette",
+      "gravite": "ordinaire", "degre": null, "ref_legale": "Réglementation engins de déplacement, modifications de 2022", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "Une trottinette électrique circule sur le trottoir devant vous, avec deux personnes à son bord.",
+        "opts": ["Les deux comportements sont interdits", "Seul le transport d'un passager est interdit", "Les deux sont autorisés si l'allure reste faible"],
+        "reponse": 0,
+        "why": "La circulation sur le trottoir est interdite, sauf à descendre et pousser l'engin, et le transport d'un passager n'est pas autorisé. L'âge minimal est par ailleurs fixé à 16 ans."
+      },
+      "nl": {
+        "stem": "Een elektrische step rijdt voor u op het voetpad, met twee personen erop.",
+        "opts": ["Beide gedragingen zijn verboden", "Enkel het vervoeren van een passagier is verboden", "Beide mogen als de snelheid laag blijft"],
+        "reponse": 0,
+        "why": "Rijden op het voetpad is verboden, tenzij men afstapt en de step voortduwt, en een passagier vervoeren mag niet. De minimumleeftijd is bovendien zestien jaar."
+      },
+      "tts": {"fr": "Une trottinette électrique circule sur le trottoir devant vous, avec deux personnes à son bord.", "nl": "Een elektrische step rijdt voor u op het voetpad, met twee personen erop."},
+      "revue": ["POINT CRITIQUE : réglementation récente et susceptible d'évolutions régionales. Vérifier l'âge minimal, l'interdiction de trottoir et le nombre d'occupants avant publication."]
+    },
+
+    {
+      "id": "q48", "theme": {"fr": "Autoroute", "nl": "Autosnelweg"}, "sous_theme": "demi-tour",
+      "gravite": "grave", "degre": 4, "faute_grave_ref": "Faire demi-tour sur une autoroute",
+      "ref_legale": "AR 01/12/1975, art. 21", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "Vous avez manqué votre sortie. Une interruption de la berme centrale est accessible.",
+        "opts": ["Vous poursuivez jusqu'à la sortie suivante", "Vous faites demi-tour par l'interruption si aucun véhicule n'arrive", "Vous reculez sur la bande d'arrêt d'urgence"],
+        "reponse": 0,
+        "why": "Le demi-tour sur autoroute est une infraction du 4e degré, tout comme la marche arrière. Les interruptions de la berme centrale sont réservées aux services autorisés."
+      },
+      "nl": {
+        "stem": "U bent uw afrit voorbijgereden. Er is een onderbreking in de middenberm.",
+        "opts": ["U rijdt door tot de volgende afrit", "U keert via de onderbreking als er geen voertuig aankomt", "U rijdt achteruit over de pechstrook"],
+        "reponse": 0,
+        "why": "Keren op de autosnelweg is een overtreding van de vierde graad, net als achteruitrijden. De onderbrekingen in de middenberm zijn voorbehouden aan bevoegde diensten."
+      },
+      "tts": {"fr": "Vous avez manqué votre sortie. Une interruption de la berme centrale est accessible.", "nl": "U bent uw afrit voorbijgereden. Er is een onderbreking in de middenberm."},
+      "revue": []
+    },
+
+    {
+      "id": "q49", "theme": {"fr": "Autoroute", "nl": "Autosnelweg"}, "sous_theme": "accès",
+      "gravite": "ordinaire", "degre": null, "ref_legale": "AR 01/12/1975, art. 21", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "Lequel de ces usagers est admis sur autoroute ?",
+        "opts": ["Une voiture tractant une remorque", "Un cyclomoteur de classe B", "Un piéton longeant l'accotement"],
+        "reponse": 0,
+        "why": "L'autoroute est interdite aux piétons, aux cyclistes et aux cyclomoteurs. Une voiture avec remorque y est admise, dans le respect des limitations propres à cet attelage."
+      },
+      "nl": {
+        "stem": "Welke van deze weggebruikers is toegelaten op de autosnelweg?",
+        "opts": ["Een auto met aanhangwagen", "Een bromfiets klasse B", "Een voetganger langs de berm"],
+        "reponse": 0,
+        "why": "De autosnelweg is verboden voor voetgangers, fietsers en bromfietsers. Een auto met aanhangwagen mag er wel rijden, mits de specifieke snelheidsbeperkingen."
+      },
+      "tts": {"fr": "Lequel de ces usagers est admis sur autoroute ?", "nl": "Welke van deze weggebruikers is toegelaten op de autosnelweg?"},
+      "revue": ["Confirmer le statut des cyclomoteurs de classe B sur autoroute."]
+    },
+
+    {
+      "id": "q50", "theme": {"fr": "Autoroute", "nl": "Autosnelweg"}, "sous_theme": "insertion",
+      "gravite": "ordinaire", "degre": null, "ref_legale": "AR 01/12/1975, art. 21", "region_scope": "ALL",
+      "media": {"type": "image", "brief": "Vue conducteur sur une bande d'accélération d'autoroute, trafic dense sur la bande de droite.", "alt_fr": "Insertion sur autoroute depuis la bande d'accélération", "alt_nl": "Invoegen op de autosnelweg vanaf de invoegstrook"},
+      "fr": {
+        "stem": "Vous êtes sur la bande d'accélération. Le trafic est dense sur la bande de droite.",
+        "opts": ["Vous adaptez votre vitesse et vous vous insérez sans forcer le passage", "Vous vous arrêtez en bout de bande et attendez un trou", "Vous vous insérez, les véhicules sur l'autoroute doivent vous laisser passer"],
+        "reponse": 0,
+        "why": "L'usager qui s'insère cède le passage à ceux déjà sur l'autoroute. S'arrêter en bout de bande d'accélération est extrêmement dangereux et n'est pas la solution attendue."
+      },
+      "nl": {
+        "stem": "U rijdt op de invoegstrook. Het verkeer op de rechterrijstrook is druk.",
+        "opts": ["U past uw snelheid aan en voegt in zonder te forceren", "U stopt op het einde van de strook en wacht op een gat", "U voegt in, het verkeer op de snelweg moet u laten gaan"],
+        "reponse": 0,
+        "why": "Wie invoegt, verleent voorrang aan wie al op de autosnelweg rijdt. Stoppen op het einde van de invoegstrook is uiterst gevaarlijk en is niet de verwachte oplossing."
+      },
+      "tts": {"fr": "Vous êtes sur la bande d'accélération. Le trafic est dense sur la bande de droite.", "nl": "U rijdt op de invoegstrook. Het verkeer op de rechterrijstrook is druk."},
+      "revue": []
+    },
+
+    {
+      "id": "q51", "theme": {"fr": "Alcool et drogues", "nl": "Alcohol en drugs"}, "sous_theme": "refus de test",
+      "gravite": "ordinaire", "degre": null, "ref_legale": "Loi du 16 mars 1968 relative à la police de la circulation routière", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "Lors d'un contrôle, vous refusez de vous soumettre au test de l'haleine sans motif médical.",
+        "opts": ["Vous êtes sanctionné, le refus est en soi une infraction", "Vous ne risquez rien, le test n'est pas obligatoire", "Vous êtes seulement invité à revenir plus tard"],
+        "reponse": 0,
+        "why": "Le refus de se soumettre au test est sanctionné en tant que tel, indépendamment de votre état réel. Seul un motif médical sérieux peut être invoqué, et un prélèvement sanguin est alors possible."
+      },
+      "nl": {
+        "stem": "Bij een controle weigert u zonder medische reden de ademtest.",
+        "opts": ["U wordt bestraft, de weigering is op zich een misdrijf", "U riskeert niets, de test is niet verplicht", "U wordt enkel gevraagd later terug te komen"],
+        "reponse": 0,
+        "why": "De weigering wordt als zodanig bestraft, los van uw werkelijke toestand. Enkel een ernstige medische reden kan worden ingeroepen, en dan is een bloedafname mogelijk."
+      },
+      "tts": {"fr": "Lors d'un contrôle, vous refusez de vous soumettre au test de l'haleine sans motif médical.", "nl": "Bij een controle weigert u zonder medische reden de ademtest."},
+      "revue": []
+    },
+
+    {
+      "id": "q52", "theme": {"fr": "Alcool et drogues", "nl": "Alcohol en drugs"}, "sous_theme": "médicaments",
+      "gravite": "ordinaire", "degre": null, "ref_legale": "AR 01/12/1975, art. 8.3", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "Votre médicament porte un pictogramme triangulaire indiquant un effet sur la conduite.",
+        "opts": ["Vous devez évaluer votre aptitude et, au besoin, ne pas conduire", "Vous pouvez conduire, le pictogramme est purement informatif", "Vous pouvez conduire sur de courtes distances"],
+        "reponse": 0,
+        "why": "Le conducteur doit être en état de conduire à tout moment. Un médicament altérant la vigilance engage votre responsabilité, indépendamment de toute mesure d'alcool ou de drogue."
+      },
+      "nl": {
+        "stem": "Uw geneesmiddel draagt een driehoekig pictogram dat wijst op een invloed op het rijden.",
+        "opts": ["U moet uw rijgeschiktheid inschatten en zo nodig niet rijden", "U mag rijden, het pictogram is louter informatief", "U mag rijden over korte afstanden"],
+        "reponse": 0,
+        "why": "De bestuurder moet op elk moment in staat zijn te sturen. Een geneesmiddel dat de waakzaamheid aantast, engageert uw aansprakelijkheid, los van elke alcohol- of drugsmeting."
+      },
+      "tts": {"fr": "Votre médicament porte un pictogramme triangulaire indiquant un effet sur la conduite.", "nl": "Uw geneesmiddel draagt een driehoekig pictogram dat wijst op een invloed op het rijden."},
+      "revue": []
+    },
+
+    {
+      "id": "q53", "theme": {"fr": "Documents", "nl": "Documenten"}, "sous_theme": "à bord",
+      "gravite": "ordinaire", "degre": null, "ref_legale": "Réglementation immatriculation et assurance", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "Lequel de ces documents ne doit pas obligatoirement se trouver à bord du véhicule ?",
+        "opts": ["La facture d'achat du véhicule", "Le certificat d'immatriculation", "L'attestation d'assurance"],
+        "reponse": 0,
+        "why": "Le permis de conduire, le certificat d'immatriculation, le certificat de conformité et l'attestation d'assurance doivent pouvoir être présentés. La facture d'achat n'est pas exigée."
+      },
+      "nl": {
+        "stem": "Welk van deze documenten moet niet verplicht in het voertuig aanwezig zijn?",
+        "opts": ["De aankoopfactuur van het voertuig", "Het inschrijvingsbewijs", "Het verzekeringsbewijs"],
+        "reponse": 0,
+        "why": "Het rijbewijs, het inschrijvingsbewijs, het gelijkvormigheidsattest en het verzekeringsbewijs moeten kunnen worden voorgelegd. De aankoopfactuur wordt niet gevraagd."
+      },
+      "tts": {"fr": "Lequel de ces documents ne doit pas obligatoirement se trouver à bord du véhicule ?", "nl": "Welk van deze documenten moet niet verplicht in het voertuig aanwezig zijn?"},
+      "revue": ["Vérifier la liste exacte des documents exigés en 2026, notamment le statut du certificat de conformité et le format numérique de l'attestation d'assurance."]
+    },
+
+    {
+      "id": "q54", "theme": {"fr": "Le véhicule", "nl": "Het voertuig"}, "sous_theme": "contrôle technique",
+      "gravite": "ordinaire", "degre": null, "ref_legale": "Réglementation contrôle technique", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "Une voiture particulière neuve doit être présentée au contrôle technique pour la première fois :",
+        "opts": ["Après quatre ans", "Après deux ans", "Après six ans"],
+        "reponse": 0,
+        "why": "La première visite a lieu après quatre ans, puis le contrôle devient annuel. Une vente entre particuliers impose par ailleurs un contrôle spécifique avant la transaction."
+      },
+      "nl": {
+        "stem": "Een nieuwe personenwagen moet voor het eerst naar de autokeuring:",
+        "opts": ["Na vier jaar", "Na twee jaar", "Na zes jaar"],
+        "reponse": 0,
+        "why": "Het eerste bezoek vindt plaats na vier jaar, daarna wordt de keuring jaarlijks. Bij een verkoop tussen particulieren geldt bovendien een aparte keuring vóór de transactie."
+      },
+      "tts": {"fr": "Une voiture particulière neuve doit être présentée au contrôle technique pour la première fois :", "nl": "Een nieuwe personenwagen moet voor het eerst naar de autokeuring:"},
+      "revue": ["Confirmer la périodicité 2026, une réforme du contrôle technique étant régulièrement annoncée."]
+    },
+
+    {
+      "id": "q55", "theme": {"fr": "Le véhicule", "nl": "Het voertuig"}, "sous_theme": "pneus",
+      "gravite": "ordinaire", "degre": null, "ref_legale": "Règlement technique des véhicules", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "Quelle est la profondeur minimale légale des sculptures d'un pneu de voiture ?",
+        "opts": ["1,6 mm", "1 mm", "3 mm"],
+        "reponse": 0,
+        "why": "En dessous de 1,6 mm sur toute la bande de roulement, le pneu n'est plus conforme. L'adhésion sur route mouillée chute bien avant ce seuil."
+      },
+      "nl": {
+        "stem": "Wat is de wettelijke minimale profieldiepte van een autoband?",
+        "opts": ["Eén komma zes millimeter", "Eén millimeter", "Drie millimeter"],
+        "reponse": 0,
+        "why": "Onder één komma zes millimeter over de hele loopvlakbreedte is de band niet meer conform. De grip op nat wegdek valt al veel vroeger terug."
+      },
+      "tts": {"fr": "Quelle est la profondeur minimale légale des sculptures d'un pneu de voiture ?", "nl": "Wat is de wettelijke minimale profieldiepte van een autoband?"},
+      "revue": []
+    },
+
+    {
+      "id": "q56", "theme": {"fr": "Le véhicule", "nl": "Het voertuig"}, "sous_theme": "équipement",
+      "gravite": "ordinaire", "degre": null, "ref_legale": "Règlement technique des véhicules", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "Vous tombez en panne sur la bande d'arrêt d'urgence de l'autoroute.",
+        "opts": ["Vous enfilez le gilet rétroréfléchissant avant de sortir du véhicule", "Vous placez d'abord le triangle, puis vous mettez le gilet", "Le gilet n'est obligatoire que la nuit"],
+        "reponse": 0,
+        "why": "Le gilet se met avant de quitter l'habitacle, puisque c'est la sortie du véhicule qui vous expose. Le triangle est placé ensuite, et les occupants se mettent derrière la glissière."
+      },
+      "nl": {
+        "stem": "U krijgt panne op de pechstrook van de autosnelweg.",
+        "opts": ["U trekt het fluohesje aan vóór u het voertuig verlaat", "U plaatst eerst de gevarendriehoek en trekt dan het hesje aan", "Het hesje is enkel 's nachts verplicht"],
+        "reponse": 0,
+        "why": "Het hesje trekt u aan vóór u uitstapt, want net het uitstappen maakt u kwetsbaar. Daarna plaatst u de driehoek en gaan de inzittenden achter de vangrail staan."
+      },
+      "tts": {"fr": "Vous tombez en panne sur la bande d'arrêt d'urgence de l'autoroute.", "nl": "U krijgt panne op de pechstrook van de autosnelweg."},
+      "revue": ["Confirmer la liste des équipements obligatoires à bord d'un véhicule immatriculé en Belgique."]
+    },
+
+    {
+      "id": "q57", "theme": {"fr": "Comportement", "nl": "Gedrag"}, "sous_theme": "appareils électroniques",
+      "gravite": "grave", "degre": 3, "faute_grave_ref": "Utiliser, manipuler ou tenir en main un appareil électronique mobile doté d'un écran non fixé, sauf véhicule à l'arrêt ou en stationnement",
+      "ref_legale": "AR 01/12/1975, art. 8.4 — modification de mars 2022", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "Vous êtes immobilisé dans un embouteillage, moteur tournant, et vous tenez votre GSM en main pour lire un message.",
+        "opts": ["C'est interdit, le véhicule n'est pas à l'arrêt au sens du code", "C'est autorisé, vous ne roulez pas", "C'est autorisé si vous ne composez pas de numéro"],
+        "reponse": 0,
+        "why": "Depuis mars 2022, tenir en main un appareil à écran non fixé est une infraction du 3e degré. L'immobilisation dans un embouteillage n'est pas un arrêt ni un stationnement au sens du code. Faute grave : 5 points."
+      },
+      "nl": {
+        "stem": "U staat stil in een file met draaiende motor en houdt uw gsm in de hand om een bericht te lezen.",
+        "opts": ["Dat is verboden, het voertuig staat niet stil in de zin van de wegcode", "Dat mag, u rijdt niet", "Dat mag als u geen nummer intoetst"],
+        "reponse": 0,
+        "why": "Sinds maart 2022 is een niet-vastgezet toestel met scherm in de hand houden een overtreding van de derde graad. Stilstaan in een file is geen stilstaan of parkeren in de zin van de wegcode. Zware fout: 5 punten."
+      },
+      "tts": {"fr": "Vous êtes immobilisé dans un embouteillage, moteur tournant, et vous tenez votre G S M en main pour lire un message.", "nl": "U staat stil in een file met draaiende motor en houdt uw gsm in de hand om een bericht te lezen."},
+      "revue": ["POINT CRITIQUE : vérifier l'interprétation de « à l'arrêt ou en stationnement » dans un embouteillage. C'est le piège classique et il doit être juridiquement exact."]
+    },
+
+    {
+      "id": "q58", "theme": {"fr": "Comportement", "nl": "Gedrag"}, "sous_theme": "distance de sécurité",
+      "gravite": "ordinaire", "degre": null, "ref_legale": "AR 01/12/1975, art. 10.1.3", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "Quelle règle pratique permet d'évaluer une distance de sécurité correcte par temps sec ?",
+        "opts": ["Un intervalle d'environ deux secondes avec le véhicule précédent", "Une longueur de voiture par tranche de 10 km/h", "Trois mètres à toute vitesse"],
+        "reponse": 0,
+        "why": "L'intervalle de deux secondes couvre le temps de réaction et s'adapte automatiquement à la vitesse. Il doit être doublé par temps de pluie ou sur chaussée glissante."
+      },
+      "nl": {
+        "stem": "Welke vuistregel laat toe een correcte veiligheidsafstand in te schatten bij droog weer?",
+        "opts": ["Een tussenafstand van ongeveer twee seconden met het voorliggende voertuig", "Eén wagenlengte per tien kilometer per uur", "Drie meter, ongeacht de snelheid"],
+        "reponse": 0,
+        "why": "De tweesecondenregel dekt de reactietijd en past zich automatisch aan de snelheid aan. Bij regen of glad wegdek moet ze verdubbeld worden."
+      },
+      "tts": {"fr": "Quelle règle pratique permet d'évaluer une distance de sécurité correcte par temps sec ?", "nl": "Welke vuistregel laat toe een correcte veiligheidsafstand in te schatten bij droog weer?"},
+      "revue": ["La règle des deux secondes est pédagogique et non réglementaire : vérifier qu'elle est présentée comme telle."]
+    },
+
+    {
+      "id": "q59", "theme": {"fr": "Comportement", "nl": "Gedrag"}, "sous_theme": "avertisseur sonore",
+      "gravite": "ordinaire", "degre": null, "ref_legale": "AR 01/12/1975, art. 92", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "Dans quel cas pouvez-vous utiliser votre avertisseur sonore en agglomération ?",
+        "opts": ["Pour prévenir d'un danger immédiat, par un signal bref", "Pour signaler votre arrivée à un ami", "Pour manifester votre mécontentement"],
+        "reponse": 0,
+        "why": "L'avertisseur sert exclusivement à prévenir d'un danger. En agglomération, il doit se limiter à un signal bref. Tout autre usage constitue une infraction."
+      },
+      "nl": {
+        "stem": "In welk geval mag u in de bebouwde kom uw claxon gebruiken?",
+        "opts": ["Om te waarschuwen voor een onmiddellijk gevaar, met een kort signaal", "Om een vriend te laten weten dat u er bent", "Om uw ongenoegen te uiten"],
+        "reponse": 0,
+        "why": "De claxon dient uitsluitend om voor gevaar te waarschuwen. Binnen de bebouwde kom moet het bij een kort signaal blijven. Elk ander gebruik is een overtreding."
+      },
+      "tts": {"fr": "Dans quel cas pouvez-vous utiliser votre avertisseur sonore en agglomération ?", "nl": "In welk geval mag u in de bebouwde kom uw claxon gebruiken?"},
+      "revue": []
+    },
+
+    {
+      "id": "q60", "theme": {"fr": "Vitesse", "nl": "Snelheid"}, "sous_theme": "route à 2x2 bandes",
+      "gravite": "grave", "degre": 3, "faute_grave_ref": "Circuler sur la bande d'arrêt d'urgence ou emprunter la chaussée de gauche lorsque les chaussées sont séparées",
+      "ref_legale": "AR 01/12/1975, art. 9", "region_scope": "ALL",
+      "media": null,
+      "fr": {
+        "stem": "Deux chaussées sont séparées par une berme centrale. Vous vous engagez par erreur sur celle de gauche.",
+        "opts": ["Vous commettez une infraction grave, équivalente à rouler à contresens", "C'est une simple erreur de trajectoire", "C'est admis si vous rejoignez rapidement la droite"],
+        "reponse": 0,
+        "why": "Emprunter la chaussée de gauche quand un séparateur physique existe revient à circuler à contresens. C'est une faute grave qui coûte 5 points."
+      },
+      "nl": {
+        "stem": "Twee rijbanen zijn gescheiden door een middenberm. U rijdt per vergissing de linkse op.",
+        "opts": ["U begaat een zware overtreding, gelijk aan spookrijden", "Dat is een simpele stuurfout", "Dat mag als u snel weer naar rechts gaat"],
+        "reponse": 0,
+        "why": "De linkerrijbaan nemen wanneer er een fysieke scheiding is, komt neer op spookrijden. Dat is een zware fout die 5 punten kost."
+      },
+      "tts": {"fr": "Deux chaussées sont séparées par une berme centrale. Vous vous engagez par erreur sur celle de gauche.", "nl": "Twee rijbanen zijn gescheiden door een middenberm. U rijdt per vergissing de linkse op."},
+      "revue": []
+    }
+
+  ]
+}
