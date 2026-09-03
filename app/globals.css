@@ -249,3 +249,15 @@ h1 {
   font-weight: 600;
   cursor: pointer;
 }
+
+.email-capture button:disabled,
+.email-capture input:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.form-error {
+  color: var(--grave);
+  font-size: 0.85rem;
+  margin: 8px 0 0;
+}

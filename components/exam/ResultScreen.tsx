@@ -7,14 +7,31 @@ interface Props {
   result: ExamResult;
 }
 
+type SendState = "idle" | "sending" | "sent" | "error";
+
 /**
  * Séquence obligatoire de CLAUDE.md §4 — ne jamais afficher un score nu.
- * La capture d'email est un stub local pour l'instant (pas d'envoi réel :
- * Resend/Brevo arrive en P0 dev, pas dans cette première passe du moteur).
+ * La capture d'email appelle app/api/subscribe (Brevo côté serveur, la clé
+ * API n'est jamais exposée au client).
  */
 export default function ResultScreen({ result }: Props) {
   const [email, setEmail] = useState("");
-  const [sent, setSent] = useState(false);
+  const [state, setState] = useState<SendState>("idle");
+
+  async function submit(e: React.FormEvent) {
+    e.preventDefault();
+    setState("sending");
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      setState(res.ok ? "sent" : "error");
+    } catch {
+      setState("error");
+    }
+  }
 
   return (
     <div className="card result">
@@ -72,24 +89,25 @@ export default function ResultScreen({ result }: Props) {
       {/* 6. capture email */}
       <div className="email-capture">
         <h3>Reçois ton plan de révision</h3>
-        {sent ? (
+        {state === "sent" ? (
           <p>Merci — tu recevras ton plan de révision par email.</p>
         ) : (
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              setSent(true);
-            }}
-          >
+          <form onSubmit={submit}>
             <input
               type="email"
               required
               placeholder="ton@email.be"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              disabled={state === "sending"}
             />
-            <button type="submit">Recevoir</button>
+            <button type="submit" disabled={state === "sending"}>
+              {state === "sending" ? "Envoi..." : "Recevoir"}
+            </button>
           </form>
+        )}
+        {state === "error" && (
+          <p className="form-error">Inscription impossible pour le moment — réessaie dans un instant.</p>
         )}
       </div>
     </div>
