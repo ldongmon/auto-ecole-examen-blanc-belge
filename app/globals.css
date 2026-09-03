@@ -105,11 +105,32 @@ h1 {
 }
 
 /* Question */
+.timer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 12px;
+}
+
 .timer {
   font-variant-numeric: tabular-nums;
   font-weight: 700;
   color: var(--accent);
-  margin: 0 0 12px;
+  margin: 0;
+}
+
+.listen {
+  border: 1px solid var(--line);
+  background: var(--paper);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: #333;
+}
+
+.listen:hover {
+  border-color: var(--accent);
 }
 
 .stem {

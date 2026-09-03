@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import type { DrawnQuestion } from "@/lib/exam/types";
 import { CONFIG, MODE } from "@/lib/exam/config";
+import { isSpeechSupported, speak, stopSpeaking } from "@/lib/exam/speech";
 
 interface Props {
   drawn: DrawnQuestion;
@@ -14,7 +15,8 @@ interface Props {
 /**
  * Affiche une question et gère son propre chronomètre. Le temps écoulé
  * déclenche une abstention automatique, comme à l'examen réel.
- * Lecture vocale (Web Speech API) volontairement pas encore branchée ici.
+ * L'énoncé est lu à voix haute (CLAUDE.md §3) via le champ `tts`, jamais
+ * le `stem` affiché : c'est lui qui porte septante/nonante, pas l'écran.
  */
 export default function QuestionCard({ drawn, questionNumber, total, onAnswer }: Props) {
   const seconds = CONFIG[MODE].seconds;
@@ -22,12 +24,20 @@ export default function QuestionCard({ drawn, questionNumber, total, onAnswer }:
   const [picked, setPicked] = useState<number | null>(null);
   const [answered, setAnswered] = useState(false);
   const content = drawn.question[drawn.lang];
+  const ttsText = drawn.question.tts[drawn.lang];
 
   useEffect(() => {
     setLeft(seconds);
     setPicked(null);
     setAnswered(false);
   }, [drawn, seconds]);
+
+  useEffect(() => {
+    speak(ttsText, drawn.lang);
+    return () => stopSpeaking();
+    // Une seule lecture automatique par question, pas à chaque tick du chrono.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [drawn.question.id, drawn.lang]);
 
   useEffect(() => {
     if (answered) return; // déjà répondu (ou abstenu), on n'attend plus le chrono
@@ -43,6 +53,7 @@ export default function QuestionCard({ drawn, questionNumber, total, onAnswer }:
 
   function choose(i: number) {
     if (answered) return; // pas de retour en arrière sur une question validée
+    stopSpeaking();
     setAnswered(true);
     setPicked(i);
     onAnswer(i);
@@ -50,6 +61,7 @@ export default function QuestionCard({ drawn, questionNumber, total, onAnswer }:
 
   function skip() {
     if (answered) return;
+    stopSpeaking();
     setAnswered(true);
     onAnswer(null);
   }
@@ -59,9 +71,21 @@ export default function QuestionCard({ drawn, questionNumber, total, onAnswer }:
       <p className="kicker">
         Question {questionNumber} / {total} — {drawn.question.theme[drawn.lang]}
       </p>
-      <p className="timer" aria-live="polite">
-        {left}s
-      </p>
+      <div className="timer-row">
+        <p className="timer" aria-live="polite">
+          {left}s
+        </p>
+        {isSpeechSupported() && (
+          <button
+            type="button"
+            className="listen"
+            onClick={() => speak(ttsText, drawn.lang)}
+            aria-label="Réécouter l'énoncé"
+          >
+            🔊 Réécouter
+          </button>
+        )}
+      </div>
       <p className="stem">{content.stem}</p>
       <div className="opts">
         {content.opts.map((opt, i) => (
