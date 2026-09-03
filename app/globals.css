@@ -1,0 +1,230 @@
+:root {
+  color-scheme: light;
+  --ink: #1a1a1a;
+  --paper: #ffffff;
+  --muted: #6b6b6b;
+  --line: #e2e2e2;
+  --accent: #1d4ed8;
+  --grave: #b91c1c;
+  --ok: #15803d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f4f4f5;
+  color: var(--ink);
+  font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.wrap {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 28px;
+  max-width: 520px;
+  width: 100%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+h1 {
+  font-size: 1.4rem;
+  margin: 4px 0 12px;
+}
+
+.kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin: 0 0 4px;
+}
+
+.lead {
+  color: #333;
+  margin: 0 0 20px;
+}
+
+.field {
+  margin-bottom: 20px;
+}
+
+.field label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.field select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin: 6px 0 0;
+}
+
+.go {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.go:hover {
+  filter: brightness(1.08);
+}
+
+.note {
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin: 14px 0 0;
+  text-align: center;
+}
+
+/* Question */
+.timer {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 12px;
+}
+
+.stem {
+  font-size: 1.05rem;
+  margin: 0 0 20px;
+}
+
+.opts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.opt {
+  text-align: left;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.opt:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.opt.picked {
+  border-color: var(--accent);
+  background: #eff4ff;
+}
+
+.opt:disabled,
+.skip:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.skip {
+  width: 100%;
+  padding: 10px;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+/* Résultat */
+.result .verdict {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.verdict.pass {
+  color: var(--ok);
+}
+
+.verdict.fail {
+  color: var(--grave);
+}
+
+.score {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+
+.passmark {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.without-heavy {
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 0 0 20px;
+}
+
+.heavy-list h3,
+.weak-themes h3,
+.email-capture h3 {
+  font-size: 0.95rem;
+  margin: 0 0 8px;
+}
+
+.heavy-list ul,
+.weak-themes ul {
+  margin: 0 0 20px;
+  padding-left: 18px;
+}
+
+.email-capture form {
+  display: flex;
+  gap: 8px;
+}
+
+.email-capture input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.email-capture button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
