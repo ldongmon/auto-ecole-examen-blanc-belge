@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { DrawnQuestion, ExamMode, Lang, QuestionBank, Region } from "@/lib/exam/types";
 import { CONFIG, MODE } from "@/lib/exam/config";
 import { drawExam } from "@/lib/exam/draw";
-import { answer, computeResult, initExam } from "@/lib/exam/scoring";
+import { answer, computeResult, initExam, type ExamState } from "@/lib/exam/scoring";
 import { pushHistoryEntry } from "@/lib/exam/progress";
 import { uiStrings } from "@/lib/exam/i18n";
 import QuestionCard from "./QuestionCard";
@@ -30,15 +30,34 @@ interface Props {
 }
 
 export default function ExamRunner({ bank, lang, region, mode = "examen" }: Props) {
-  const deck = useMemo(() => drawExam({ bank, lang, region }), [bank, lang, region]);
-  const [state, setState] = useState(() => initExam(deck));
+  // Le tirage utilise Math.random() (drawExam -> shuffle) : le calculer
+  // pendant le rendu (useMemo/useState lazy) donne un résultat différent au
+  // rendu serveur et au premier rendu client, ce qui casse l'hydratation
+  // React (le HTML servi ne correspond plus à ce que le client recalcule).
+  // On ne tire donc qu'après le montage, côté client uniquement (useEffect
+  // ne s'exécute jamais pendant le rendu serveur) — état null le temps du
+  // premier rendu, identique des deux côtés, pas de désaccord possible.
+  const [state, setState] = useState<ExamState | null>(null);
   const [pendingCorrection, setPendingCorrection] = useState<Mistake | null>(null);
   // Historique des réponses ratées (faux + abstentions), pour "Revoir mes
   // erreurs" côté résultat. Distinct de `state.faults` (scoring.ts) qui ne
   // garde que des identifiants/thèmes, pas la question complète à réafficher.
   const [mistakes, setMistakes] = useState<Mistake[]>([]);
 
-  if (deck.length === 0) {
+  useEffect(() => {
+    const deck = drawExam({ bank, lang, region });
+    setState(initExam(deck));
+    setPendingCorrection(null);
+    setMistakes([]);
+  }, [bank, lang, region]);
+
+  if (state === null) {
+    // Même balisage minimal des deux côtés le temps du tirage client — évite
+    // tout flash de contenu incohérent plutôt que d'afficher un squelette.
+    return <div className="card" />;
+  }
+
+  if (state.deck.length === 0) {
     return (
       <div className="card">
         <p className="stem">{uiStrings(lang).noQuestions}</p>
@@ -47,7 +66,7 @@ export default function ExamRunner({ bank, lang, region, mode = "examen" }: Prop
   }
 
   function handleAnswer(current: DrawnQuestion, picked: number | null) {
-    setState((s) => answer(s, picked, { enforceAutoFail: mode === "examen" }));
+    setState((s) => (s ? answer(s, picked, { enforceAutoFail: mode === "examen" }) : s));
     if (picked !== current.correctIndex) {
       setMistakes((m) => [...m, { drawn: current, pickedIndex: picked }]);
     }
@@ -67,7 +86,7 @@ export default function ExamRunner({ bank, lang, region, mode = "examen" }: Prop
   }
 
   if (state.finished) {
-    const result = computeResult(state, deck.length, CONFIG[MODE].passMark);
+    const result = computeResult(state, state.deck.length, CONFIG[MODE].passMark);
     return (
       <FinishedExam
         result={result}
@@ -86,7 +105,7 @@ export default function ExamRunner({ bank, lang, region, mode = "examen" }: Prop
       key={current.question.id}
       drawn={current}
       questionNumber={state.index + 1}
-      total={deck.length}
+      total={state.deck.length}
       onAnswer={(picked) => handleAnswer(current, picked)}
     />
   );
