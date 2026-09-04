@@ -35,16 +35,66 @@ main {
   padding: 24px;
 }
 
-/* Accueil : la section hero garde le traitement "carte centrée" des autres
-   pages ; les sections suivantes sont des blocs pleine largeur du wrap. */
-.hero {
-  display: flex;
-  justify-content: center;
-  padding-top: 40px;
+/* Accueil : bannière pleine largeur dans le même langage visuel que le
+   tableau de bord (dégradé bleu, drapeau, motif Atomium), un panneau
+   translucide porte le formulaire de démarrage. */
+.home-hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0b2f6b 0%, #124a9e 55%, #1d63c9 100%);
+  color: #fff;
+  padding: 48px 24px 44px;
 }
 
-.hero-card {
-  max-width: 560px;
+.home-hero-inner {
+  position: relative;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.home-hero h1 {
+  color: #fff;
+  font-size: clamp(1.6rem, 4vw, 2.1rem);
+  margin: 0 0 14px;
+}
+
+.home-lead {
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0 0 24px;
+  max-width: 52ch;
+}
+
+.home-panel {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(6px);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.home-panel .field label {
+  color: #fff;
+}
+
+.home-panel .field select {
+  border: none;
+}
+
+.home-panel .hint {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.home-note {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.8rem;
+  margin: 14px 0 0;
+  text-align: center;
+}
+
+.home-note a {
+  color: #fff;
+  font-weight: 600;
 }
 
 .cta-row {
@@ -58,6 +108,18 @@ main {
   background: var(--paper);
   color: var(--accent);
   border: 1px solid var(--accent);
+}
+
+.go.gold {
+  background: linear-gradient(135deg, #f5b400, #e08e00);
+  color: #1a1a1a;
+  font-weight: 800;
+}
+
+.go.outline-light {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
 .section-block {
@@ -90,8 +152,18 @@ main {
 .feature-card {
   background: var(--paper);
   border: 1px solid var(--line);
+  border-top: 3px solid var(--accent);
   border-radius: 12px;
   padding: 18px;
+}
+
+.feature-card.accent-1 { border-top-color: #f5b400; }
+.feature-card.accent-2 { border-top-color: #c8102e; }
+
+.feature-icon {
+  display: inline-block;
+  font-size: 1.3rem;
+  margin-bottom: 8px;
 }
 
 .feature-card h3 {

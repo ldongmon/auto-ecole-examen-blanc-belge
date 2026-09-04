@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import type { Region } from "@/lib/exam/types";
+import BelgiumMotif from "@/components/progress/BelgiumMotif";
 
 const REGIONS: { value: Region; label: string }[] = [
   { value: "WAL", label: "Wallonie" },
@@ -13,18 +14,22 @@ const REGIONS: { value: Region; label: string }[] = [
 
 const FEATURES = [
   {
+    icon: "⚖️",
     title: "Le vrai barème, pas une approximation",
     text: "Faute grave = −5 points, deux fautes graves = échec automatique. C'est la règle réelle de l'examen, pas 1 point par erreur comme ailleurs.",
   },
   {
+    icon: "💡",
     title: "Tu comprends, pas seulement tu réponds",
     text: "Après chaque question en mode entraînement : la bonne réponse, et surtout pourquoi — pour ne plus refaire la même erreur.",
   },
   {
+    icon: "📍",
     title: "Adapté à ta région",
     text: "Wallonie, Bruxelles, Flandre : les règles diffèrent réellement, pas seulement la langue. Le tirage respecte ta région d'examen.",
   },
   {
+    icon: "🆓",
     title: "Gratuit, sans compte",
     text: "Tu t'entraînes tout de suite, sans créer de compte ni sortir ta carte bancaire.",
   },
@@ -43,42 +48,53 @@ export default function Home() {
 
   return (
     <main>
-      <section className="hero wrap">
-        <div className="card hero-card">
-          <p className="kicker">Examen blanc — Permis B</p>
+      <section className="home-hero">
+        <BelgiumMotif />
+        <div className="home-hero-inner">
+          <div className="dashboard-flag" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </div>
+          <p className="dashboard-eyebrow">Examen blanc — Permis B</p>
           <h1>Le seul simulateur fidèle au vrai barème</h1>
-          <p className="lead">
+          <p className="home-lead">
             Un candidat mal informé se prépare mal, et a donc moins de chances de réussir. Cette plateforme
             est là pour t&apos;aider à vraiment comprendre le code de la route belge — pas juste à deviner
             des réponses.
           </p>
 
-          <div className="field">
-            <label htmlFor="region">Région d&apos;examen</label>
-            <select id="region" value={region} onChange={(e) => setRegion(e.target.value as Region)}>
-              {REGIONS.map((r) => (
-                <option key={r.value} value={r.value}>
-                  {r.label}
-                </option>
-              ))}
-            </select>
-            <p className="hint">Les règles diffèrent réellement par région, pas seulement la langue.</p>
+          <div className="home-panel">
+            <div className="field">
+              <label htmlFor="region">Région d&apos;examen</label>
+              <select id="region" value={region} onChange={(e) => setRegion(e.target.value as Region)}>
+                {REGIONS.map((r) => (
+                  <option key={r.value} value={r.value}>
+                    {r.label}
+                  </option>
+                ))}
+              </select>
+              <p className="hint">Les règles diffèrent réellement par région, pas seulement la langue.</p>
+            </div>
+
+            <div className="cta-row">
+              <button
+                className="go gold"
+                onClick={() => router.push(`/fr/examen?region=${region}&mode=entrainement`)}
+              >
+                Commencer mon entraînement
+              </button>
+              <button
+                className="go outline-light"
+                onClick={() => router.push(`/fr/examen?region=${region}&mode=examen`)}
+              >
+                Faire un examen blanc complet
+              </button>
+            </div>
           </div>
 
-          <div className="cta-row">
-            <button className="go" onClick={() => router.push(`/fr/examen?region=${region}&mode=entrainement`)}>
-              Commencer mon entraînement
-            </button>
-            <button
-              className="go secondary"
-              onClick={() => router.push(`/fr/examen?region=${region}&mode=examen`)}
-            >
-              Faire un examen blanc complet
-            </button>
-          </div>
-
-          <p className="note">Gratuit, sans compte. Version de développement — corpus non encore validé.</p>
-          <p className="note">
+          <p className="home-note">Gratuit, sans compte. Version de développement — corpus non encore validé.</p>
+          <p className="home-note">
             <Link href="/fr/centre">Trouver mon centre d&apos;examen →</Link>
           </p>
         </div>
@@ -88,8 +104,9 @@ export default function Home() {
         <div className="section-inner">
           <h2>Pourquoi s&apos;entraîner ici ?</h2>
           <div className="feature-grid">
-            {FEATURES.map((f) => (
-              <div key={f.title} className="feature-card">
+            {FEATURES.map((f, i) => (
+              <div key={f.title} className={"feature-card accent-" + (i % 3)}>
+                <span className="feature-icon" aria-hidden="true">{f.icon}</span>
                 <h3>{f.title}</h3>
                 <p>{f.text}</p>
               </div>
