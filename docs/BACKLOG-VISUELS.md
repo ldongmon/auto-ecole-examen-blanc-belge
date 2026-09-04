@@ -30,8 +30,8 @@ l'estime sans perdre en fiabilité.
 
 **Recommandation en attente d'arbitrage client** : vraies photos en premier (gratuit, contrôle total de la conformité au brief), illustrateur freelance en complément pour les scènes difficiles à photographier (ex. agent qui règle la circulation).
 
-## Prochaine étape possible
+## Brief de production
 
-Préparer une fiche de prise de vue précise par question (angle, éléments obligatoires dans
-le cadre, ce qu'il ne faut surtout pas montrer) pour que le client — ou un photographe/illustrateur
-mandaté — puisse produire ces 8 visuels sans aller-retour.
+Fait — voir `docs/BRIEF-SCENES.md` : fiche par question (ce qui doit/ne doit pas apparaître,
+angle, ce qu'il ne faut surtout pas montrer), utilisable pour une vraie photo ou une
+illustration. Reste à trancher : quelle technique, et qui produit.
