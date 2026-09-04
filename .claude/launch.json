@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "examen-blanc-belge",
+      "runtimeExecutable": "G:\\PERMIS DE CONDUIRE BELGE\\examen-blanc-belge\\run-dev.bat",
+      "runtimeArgs": [],
+      "port": 3000
+    }
+  ]
+}

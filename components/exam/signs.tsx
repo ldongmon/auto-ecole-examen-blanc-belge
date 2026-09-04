@@ -5,9 +5,16 @@
 // aux panneaux (formes fixes, fiables) plutôt qu'aux scènes de conduite
 // (plus complexes, à produire dans une passe ultérieure).
 
-const RED = "#c8102e";
-const BLUE = "#0033a0";
-const YELLOW = "#ffd400";
+// Couleurs alignées sur les teintes RAL utilisées par les fabricants de
+// panneaux homologués belges (fiches produit panneausignalisation.be) :
+// RAL 3020 "rouge trafic" et RAL 1023 "jaune trafic", confirmés le
+// 2026-09-04. Le bleu (RAL 5017 "bleu trafic", standard européen courant
+// pour les signaux d'obligation/indication) n'a pas pu être confirmé sur
+// une fiche belge officielle — à valider avant une vraie mise en production,
+// même logique que ref_legale dans data/questions.json.
+const RED = "#cc0605"; // RAL 3020, confirmé
+const BLUE = "#063971"; // RAL 5017, non confirmé pour la Belgique — à vérifier
+const YELLOW = "#fad201"; // RAL 1023, confirmé
 
 function Base({ children }: { children: React.ReactNode }) {
   return (
