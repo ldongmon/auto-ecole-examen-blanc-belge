@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import type { ExamResult } from "@/lib/exam/scoring";
+import type { ExamMode } from "@/lib/exam/types";
 
 interface Props {
   result: ExamResult;
+  mode?: ExamMode;
 }
 
 type SendState = "idle" | "sending" | "sent" | "error";
@@ -14,7 +16,7 @@ type SendState = "idle" | "sending" | "sent" | "error";
  * La capture d'email appelle app/api/subscribe (Brevo côté serveur, la clé
  * API n'est jamais exposée au client).
  */
-export default function ResultScreen({ result }: Props) {
+export default function ResultScreen({ result, mode = "examen" }: Props) {
   const [email, setEmail] = useState("");
   const [state, setState] = useState<SendState>("idle");
 
@@ -35,14 +37,19 @@ export default function ResultScreen({ result }: Props) {
 
   return (
     <div className="card result">
-      {/* 1. verdict */}
-      <p className={"verdict " + (result.passed ? "pass" : "fail")}>
-        {result.autoFailed
-          ? "Échec — deux fautes graves"
-          : result.passed
-            ? "Réussi"
-            : "Échec"}
-      </p>
+      {/* 1. verdict — en entraînement, pas de cadre réussite/échec :
+          le but est de s'exercer, pas d'obtenir un verdict. */}
+      {mode === "entrainement" ? (
+        <p className="verdict neutral">Session d&apos;entraînement terminée</p>
+      ) : (
+        <p className={"verdict " + (result.passed ? "pass" : "fail")}>
+          {result.autoFailed
+            ? "Échec — deux fautes graves"
+            : result.passed
+              ? "Réussi"
+              : "Échec"}
+        </p>
+      )}
 
       {/* 2. score réel */}
       <p className="score">

@@ -22,12 +22,22 @@ export function initExam(deck: DrawnQuestion[]): ExamState {
   return { deck, index: 0, pointsLost: 0, heavyFaultCount: 0, faults: [], finished: false, autoFailed: false };
 }
 
+export interface AnswerOptions {
+  /**
+   * Mode examen (défaut) : deux fautes graves arrêtent la session, fidèle à
+   * l'examen réel (CLAUDE.md §3). Mode entraînement : on désactive cet arrêt
+   * pour laisser le candidat s'exercer sur tout le tirage sans être éjecté.
+   */
+  enforceAutoFail?: boolean;
+}
+
 /**
  * Fait avancer l'examen d'une question : `pickedIndex` est l'option choisie,
  * ou `null` pour une abstention ("je ne réponds pas").
  * Ne modifie pas `state`, retourne le nouvel état.
  */
-export function answer(state: ExamState, pickedIndex: number | null): ExamState {
+export function answer(state: ExamState, pickedIndex: number | null, options?: AnswerOptions): ExamState {
+  const enforceAutoFail = options?.enforceAutoFail ?? true;
   if (state.finished) return state;
 
   const current = state.deck[state.index];
@@ -66,7 +76,7 @@ export function answer(state: ExamState, pickedIndex: number | null): ExamState 
 
   const heavyFaultCount = state.heavyFaultCount + heavyFaultDelta;
   const nextIndex = state.index + 1;
-  const autoFailed = heavyFaultCount >= HEAVY_FAIL_COUNT;
+  const autoFailed = enforceAutoFail && heavyFaultCount >= HEAVY_FAIL_COUNT;
   const finished = autoFailed || nextIndex >= state.deck.length;
 
   return {

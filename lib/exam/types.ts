@@ -4,6 +4,13 @@
 // (ce n'est jamais qu'une traduction — voir CLAUDE.md §10).
 
 export type Lang = "fr" | "nl";
+
+/**
+ * "examen" (défaut) : comportement fidèle à l'examen réel — arrêt à 2 fautes
+ * graves, pas de correction avant la fin. "entrainement" : correction
+ * pédagogique après chaque question, pas d'arrêt prématuré.
+ */
+export type ExamMode = "entrainement" | "examen";
 export type Region = "WAL" | "BRU" | "VLA";
 export type RegionScope = "ALL" | Region;
 

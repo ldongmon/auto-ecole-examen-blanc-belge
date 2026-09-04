@@ -4,9 +4,13 @@
   --paper: #ffffff;
   --muted: #6b6b6b;
   --line: #e2e2e2;
+  --surface: #f4f4f5;
+  --surface-alt: #eef2ff;
   --accent: #1d4ed8;
+  --accent-dark: #1e3a8a;
   --grave: #b91c1c;
   --ok: #15803d;
+  --warn: #b45309;
 }
 
 * {
@@ -15,18 +19,129 @@
 
 body {
   margin: 0;
-  background: #f4f4f5;
+  background: var(--surface);
   color: var(--ink);
   font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   line-height: 1.5;
 }
 
+main {
+  display: block;
+}
+
 .wrap {
-  min-height: 100dvh;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* Accueil : la section hero garde le traitement "carte centrée" des autres
+   pages ; les sections suivantes sont des blocs pleine largeur du wrap. */
+.hero {
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+}
+
+.hero-card {
+  max-width: 560px;
+}
+
+.cta-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.go.secondary {
+  background: var(--paper);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.section-block {
+  padding: 32px 24px;
+}
+
+.section-block h2 {
+  font-size: 1.2rem;
+  margin: 0 0 16px;
+  text-align: center;
+}
+
+.section-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.section-block.alt .section-inner {
+  background: var(--surface-alt);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.feature-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 18px;
+}
+
+.feature-card h3 {
+  font-size: 0.95rem;
+  margin: 0 0 6px;
+}
+
+.feature-card p {
+  font-size: 0.88rem;
+  color: #444;
+  margin: 0;
+}
+
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.steps li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.95rem;
+}
+
+.step-n {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.infos-teaser ul {
+  margin: 0 0 20px;
+  padding-left: 18px;
+}
+
+.infos-teaser li {
+  margin-bottom: 6px;
 }
 
 .card {
@@ -199,6 +314,63 @@ h1 {
   color: var(--grave);
 }
 
+.verdict.neutral {
+  color: var(--accent-dark);
+}
+
+/* Correction pédagogique (mode entraînement) */
+.correction .verdict-chip {
+  display: inline-block;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 999px;
+  margin: 0 0 16px;
+  font-size: 0.9rem;
+}
+
+.verdict-chip.pass {
+  background: #dcfce7;
+  color: var(--ok);
+}
+
+.verdict-chip.fail {
+  background: #fee2e2;
+  color: var(--grave);
+}
+
+.verdict-chip.neutral {
+  background: #f1f5f9;
+  color: var(--muted);
+}
+
+.your-answer {
+  color: var(--muted);
+  margin: 0 0 6px;
+  text-decoration: line-through;
+}
+
+.right-answer {
+  margin: 0 0 18px;
+}
+
+.why-box {
+  background: var(--surface-alt);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin: 0 0 20px;
+}
+
+.why-box h3 {
+  font-size: 0.85rem;
+  margin: 0 0 6px;
+  color: var(--accent-dark);
+}
+
+.why-box p {
+  margin: 0;
+  font-size: 0.92rem;
+}
+
 .score {
   font-size: 2rem;
   font-weight: 700;
@@ -293,4 +465,194 @@ h1 {
 
 .centre-list a:hover {
   text-decoration: underline;
+}
+
+/* En-tête du site */
+.site-header {
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.site-header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.brand {
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.nav-toggle {
+  display: none;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.site-nav a {
+  color: #333;
+  text-decoration: none;
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+
+.site-nav a:hover,
+.site-nav a.active {
+  color: var(--accent);
+}
+
+.lang-switch {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.lang-switch a {
+  color: var(--muted);
+}
+
+.lang-switch a.active {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+@media (max-width: 720px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .site-nav {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding-top: 12px;
+  }
+
+  .site-nav.open {
+    display: flex;
+  }
+
+  .site-header-inner {
+    flex-wrap: wrap;
+  }
+}
+
+/* Pied de page */
+.site-footer {
+  border-top: 1px solid var(--line);
+  margin-top: 40px;
+  padding: 24px;
+  background: var(--paper);
+}
+
+.site-footer-inner {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-disclaimer {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 10px;
+}
+
+.footer-nav a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.footer-copy {
+  font-size: 0.75rem;
+  color: #999;
+  margin: 0;
+}
+
+/* Infos pratiques */
+.infos-page,
+.faq-page {
+  max-width: 680px;
+}
+
+.infos-section {
+  margin-bottom: 24px;
+}
+
+.infos-section h2 {
+  font-size: 1rem;
+  margin: 0 0 10px;
+}
+
+.infos-section ul {
+  padding-left: 18px;
+  margin: 0;
+}
+
+.infos-section li {
+  margin-bottom: 8px;
+}
+
+.infos-caveat {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+}
+
+.infos-caveat p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--warn);
+}
+
+/* FAQ */
+.faq-list details {
+  border-bottom: 1px solid var(--line);
+  padding: 14px 0;
+}
+
+.faq-list summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.faq-list p {
+  margin: 10px 0 0;
+  font-size: 0.9rem;
+  color: #333;
 }
