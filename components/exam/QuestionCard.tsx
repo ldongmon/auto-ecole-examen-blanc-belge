@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import type { DrawnQuestion } from "@/lib/exam/types";
 import { CONFIG, MODE } from "@/lib/exam/config";
 import { isSpeechSupported, speak, stopSpeaking } from "@/lib/exam/speech";
+import { uiStrings } from "@/lib/exam/i18n";
 import QuestionVisual from "./QuestionVisual";
 
 interface Props {
@@ -26,6 +27,7 @@ export default function QuestionCard({ drawn, questionNumber, total, onAnswer }:
   const [answered, setAnswered] = useState(false);
   const content = drawn.question[drawn.lang];
   const ttsText = drawn.question.tts[drawn.lang];
+  const t = uiStrings(drawn.lang);
 
   useEffect(() => {
     setLeft(seconds);
@@ -69,21 +71,14 @@ export default function QuestionCard({ drawn, questionNumber, total, onAnswer }:
 
   return (
     <div className="card">
-      <p className="kicker">
-        Question {questionNumber} / {total} — {drawn.question.theme[drawn.lang]}
-      </p>
+      <p className="kicker">{t.questionLabel(questionNumber, total, drawn.question.theme[drawn.lang])}</p>
       <div className="timer-row">
         <p className="timer" aria-live="polite">
           {left}s
         </p>
         {isSpeechSupported() && (
-          <button
-            type="button"
-            className="listen"
-            onClick={() => speak(ttsText, drawn.lang)}
-            aria-label="Réécouter l'énoncé"
-          >
-            🔊 Réécouter
+          <button type="button" className="listen" onClick={() => speak(ttsText, drawn.lang)} aria-label={t.listenAria}>
+            {t.listen}
           </button>
         )}
       </div>
@@ -102,7 +97,7 @@ export default function QuestionCard({ drawn, questionNumber, total, onAnswer }:
         ))}
       </div>
       <button className="skip" onClick={skip} disabled={answered}>
-        Je ne réponds pas
+        {t.skip}
       </button>
     </div>
   );

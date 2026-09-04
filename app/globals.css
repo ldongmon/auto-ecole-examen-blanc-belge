@@ -459,6 +459,91 @@ h1 {
   margin: 8px 0 0;
 }
 
+/* Progression */
+.progression-page {
+  max-width: 640px;
+}
+
+.progression-note {
+  color: var(--muted);
+  font-size: 0.82rem;
+  margin: 0 0 20px;
+}
+
+.stat-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.stat-box {
+  flex: 1;
+  background: var(--surface-alt);
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--accent-dark);
+}
+
+.stat-label {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.history-list {
+  margin: 20px 0;
+}
+
+.history-list h3 {
+  font-size: 0.9rem;
+  margin: 0 0 10px;
+}
+
+.history-list ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.history-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.85rem;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.history-score {
+  font-weight: 700;
+  color: var(--grave);
+}
+
+.history-score.pass {
+  color: var(--ok);
+}
+
+.clear-history {
+  width: 100%;
+  padding: 10px;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
 .score {
   font-size: 2rem;
   font-weight: 700;

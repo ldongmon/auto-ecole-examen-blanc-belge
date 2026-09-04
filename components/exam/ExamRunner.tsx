@@ -1,10 +1,12 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { DrawnQuestion, ExamMode, Lang, QuestionBank, Region } from "@/lib/exam/types";
 import { CONFIG, MODE } from "@/lib/exam/config";
 import { drawExam } from "@/lib/exam/draw";
 import { answer, computeResult, initExam } from "@/lib/exam/scoring";
+import { pushHistoryEntry } from "@/lib/exam/progress";
+import { uiStrings } from "@/lib/exam/i18n";
 import QuestionCard from "./QuestionCard";
 import CorrectionPanel from "./CorrectionPanel";
 import ResultScreen from "./ResultScreen";
@@ -39,9 +41,7 @@ export default function ExamRunner({ bank, lang, region, mode = "examen" }: Prop
   if (deck.length === 0) {
     return (
       <div className="card">
-        <p className="stem">
-          Aucune question disponible pour cette région pour le moment. Reviens un peu plus tard.
-        </p>
+        <p className="stem">{uiStrings(lang).noQuestions}</p>
       </div>
     );
   }
@@ -68,7 +68,15 @@ export default function ExamRunner({ bank, lang, region, mode = "examen" }: Prop
 
   if (state.finished) {
     const result = computeResult(state, deck.length, CONFIG[MODE].passMark);
-    return <ResultScreen result={result} mode={mode} mistakes={mistakes} />;
+    return (
+      <FinishedExam
+        result={result}
+        mode={mode}
+        mistakes={mistakes}
+        lang={lang}
+        region={region}
+      />
+    );
   }
 
   const current = state.deck[state.index];
@@ -82,4 +90,39 @@ export default function ExamRunner({ bank, lang, region, mode = "examen" }: Prop
       onAnswer={(picked) => handleAnswer(current, picked)}
     />
   );
+}
+
+interface FinishedExamProps {
+  result: ReturnType<typeof computeResult>;
+  mode: ExamMode;
+  mistakes: Mistake[];
+  lang: Lang;
+  region: Region;
+}
+
+/**
+ * Enregistre le résultat dans l'historique localStorage exactement une fois
+ * (au montage), puis affiche l'écran de résultat habituel. Séparé
+ * d'ExamRunner pour que l'effet ne se redéclenche pas à chaque re-render.
+ */
+function FinishedExam({ result, mode, mistakes, lang, region }: FinishedExamProps) {
+  const saved = useRef(false);
+
+  useEffect(() => {
+    if (saved.current) return;
+    saved.current = true;
+    pushHistoryEntry({
+      date: new Date().toISOString(),
+      lang,
+      region,
+      mode,
+      score: result.score,
+      total: result.total,
+      passed: result.passed,
+      themeStats: result.themeStats,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return <ResultScreen result={result} mode={mode} mistakes={mistakes} lang={lang} />;
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import type { DrawnQuestion } from "@/lib/exam/types";
+import { uiStrings } from "@/lib/exam/i18n";
 import QuestionVisual from "./QuestionVisual";
 
 interface Props {
@@ -16,34 +17,35 @@ interface Props {
  */
 export default function CorrectionPanel({ drawn, pickedIndex, onContinue }: Props) {
   const content = drawn.question[drawn.lang];
+  const t = uiStrings(drawn.lang);
   const correct = pickedIndex === drawn.correctIndex;
   const abstained = pickedIndex === null;
 
   return (
     <div className="card correction">
       <p className={"verdict-chip " + (correct ? "pass" : abstained ? "neutral" : "fail")}>
-        {correct ? "✅ Bonne réponse" : abstained ? "◻️ Pas de réponse" : "❌ Mauvaise réponse"}
+        {correct ? t.correctVerdict : abstained ? t.abstainedVerdict : t.wrongVerdict}
       </p>
 
       <QuestionVisual questionId={drawn.question.id} />
 
       {!correct && !abstained && (
         <p className="your-answer">
-          Ta réponse : <span>{content.opts[pickedIndex]}</span>
+          {t.yourAnswer} <span>{content.opts[pickedIndex]}</span>
         </p>
       )}
 
       <p className="right-answer">
-        Bonne réponse : <strong>{content.opts[drawn.correctIndex]}</strong>
+        {t.rightAnswer} <strong>{content.opts[drawn.correctIndex]}</strong>
       </p>
 
       <div className="why-box">
-        <h3>Pourquoi ?</h3>
+        <h3>{t.why}</h3>
         <p>{content.why}</p>
       </div>
 
       <button className="go" onClick={onContinue}>
-        Continuer →
+        {t.continueBtn}
       </button>
     </div>
   );
