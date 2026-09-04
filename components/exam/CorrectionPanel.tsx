@@ -1,6 +1,7 @@
 "use client";
 
 import type { DrawnQuestion } from "@/lib/exam/types";
+import QuestionVisual from "./QuestionVisual";
 
 interface Props {
   drawn: DrawnQuestion;
@@ -23,6 +24,8 @@ export default function CorrectionPanel({ drawn, pickedIndex, onContinue }: Prop
       <p className={"verdict-chip " + (correct ? "pass" : abstained ? "neutral" : "fail")}>
         {correct ? "✅ Bonne réponse" : abstained ? "◻️ Pas de réponse" : "❌ Mauvaise réponse"}
       </p>
+
+      <QuestionVisual questionId={drawn.question.id} />
 
       {!correct && !abstained && (
         <p className="your-answer">

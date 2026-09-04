@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import type { DrawnQuestion } from "@/lib/exam/types";
 import { CONFIG, MODE } from "@/lib/exam/config";
 import { isSpeechSupported, speak, stopSpeaking } from "@/lib/exam/speech";
+import QuestionVisual from "./QuestionVisual";
 
 interface Props {
   drawn: DrawnQuestion;
@@ -86,6 +87,7 @@ export default function QuestionCard({ drawn, questionNumber, total, onAnswer }:
           </button>
         )}
       </div>
+      <QuestionVisual questionId={drawn.question.id} />
       <p className="stem">{content.stem}</p>
       <div className="opts">
         {content.opts.map((opt, i) => (

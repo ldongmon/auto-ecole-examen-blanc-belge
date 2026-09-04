@@ -90,6 +90,13 @@ export function answer(state: ExamState, pickedIndex: number | null, options?: A
   };
 }
 
+export interface ThemeStat {
+  theme: string;
+  total: number;
+  correct: number;
+  percent: number;
+}
+
 export interface ExamResult {
   passed: boolean;
   score: number;
@@ -101,6 +108,8 @@ export interface ExamResult {
   heavyFaults: FaultRecord[];
   /** Chapitres classés par nombre d'erreurs, décroissant. */
   weakThemes: { theme: string; count: number }[];
+  /** % de réussite par chapitre, sur les seules questions réellement posées. */
+  themeStats: ThemeStat[];
 }
 
 export function computeResult(state: ExamState, total: number, passMark: number): ExamResult {
@@ -120,6 +129,23 @@ export function computeResult(state: ExamState, total: number, passMark: number)
     .map(([theme, count]) => ({ theme, count }))
     .sort((a, b) => b.count - a.count);
 
+  // % de réussite par chapitre — seulement sur les questions réellement
+  // posées (state.deck peut être plus long que ce qui a été joué si
+  // l'examen s'est arrêté avant la fin du tirage).
+  const asked = state.deck.slice(0, state.index);
+  const askedByTheme = new Map<string, number>();
+  for (const d of asked) {
+    const theme = d.question.theme[d.lang];
+    askedByTheme.set(theme, (askedByTheme.get(theme) ?? 0) + 1);
+  }
+  const themeStats = [...askedByTheme.entries()]
+    .map(([theme, askedCount]) => {
+      const wrong = weakByTheme.get(theme) ?? 0;
+      const correct = askedCount - wrong;
+      return { theme, total: askedCount, correct, percent: Math.round((correct / askedCount) * 100) };
+    })
+    .sort((a, b) => a.percent - b.percent);
+
   return {
     passed: !state.autoFailed && score >= passMark,
     score,
@@ -129,5 +155,6 @@ export function computeResult(state: ExamState, total: number, passMark: number)
     scoreWithoutHeavyFaults,
     heavyFaults,
     weakThemes,
+    themeStats,
   };
 }

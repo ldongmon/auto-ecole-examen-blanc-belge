@@ -3,22 +3,29 @@
 import { useState } from "react";
 import type { ExamResult } from "@/lib/exam/scoring";
 import type { ExamMode } from "@/lib/exam/types";
+import type { Mistake } from "./ExamRunner";
 
 interface Props {
   result: ExamResult;
   mode?: ExamMode;
+  mistakes?: Mistake[];
 }
 
 type SendState = "idle" | "sending" | "sent" | "error";
+
+// Seuil au-delà duquel un chapitre est considéré comme un point fort plutôt
+// qu'un point à améliorer.
+const STRONG_THRESHOLD = 80;
 
 /**
  * Séquence obligatoire de CLAUDE.md §4 — ne jamais afficher un score nu.
  * La capture d'email appelle app/api/subscribe (Brevo côté serveur, la clé
  * API n'est jamais exposée au client).
  */
-export default function ResultScreen({ result, mode = "examen" }: Props) {
+export default function ResultScreen({ result, mode = "examen", mistakes = [] }: Props) {
   const [email, setEmail] = useState("");
   const [state, setState] = useState<SendState>("idle");
+  const [showMistakes, setShowMistakes] = useState(false);
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -34,6 +41,9 @@ export default function ResultScreen({ result, mode = "examen" }: Props) {
       setState("error");
     }
   }
+
+  const strong = result.themeStats.filter((t) => t.percent >= STRONG_THRESHOLD);
+  const weak = result.themeStats.filter((t) => t.percent < STRONG_THRESHOLD);
 
   return (
     <div className="card result">
@@ -79,17 +89,63 @@ export default function ResultScreen({ result, mode = "examen" }: Props) {
         </div>
       )}
 
-      {/* 5. chapitres faibles */}
-      {result.weakThemes.length > 0 && (
-        <div className="weak-themes">
-          <h3>Chapitres à revoir</h3>
-          <ul>
-            {result.weakThemes.map((w) => (
-              <li key={w.theme}>
-                {w.theme} — {w.count} erreur{w.count > 1 ? "s" : ""}
-              </li>
-            ))}
-          </ul>
+      {/* 5. analyse par chapitre : points forts / points à améliorer */}
+      {result.themeStats.length > 0 && (
+        <div className="theme-stats">
+          {weak.length > 0 && (
+            <div className="theme-group weak">
+              <h3>Points à améliorer</h3>
+              <ul>
+                {weak.map((t) => (
+                  <li key={t.theme}>
+                    <span>{t.theme}</span>
+                    <span className="theme-percent weak-percent">{t.percent}%</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {strong.length > 0 && (
+            <div className="theme-group strong">
+              <h3>Points forts</h3>
+              <ul>
+                {strong.map((t) => (
+                  <li key={t.theme}>
+                    <span>{t.theme}</span>
+                    <span className="theme-percent strong-percent">{t.percent}%</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Revoir mes erreurs */}
+      {mistakes.length > 0 && (
+        <div className="review-mistakes">
+          <button className="go secondary" onClick={() => setShowMistakes((s) => !s)}>
+            {showMistakes ? "Masquer mes erreurs" : `Revoir mes erreurs (${mistakes.length})`}
+          </button>
+          {showMistakes && (
+            <div className="mistake-list">
+              {mistakes.map((m, i) => {
+                const content = m.drawn.question[m.drawn.lang];
+                return (
+                  <div key={m.drawn.question.id + i} className="mistake-item">
+                    <p className="mistake-stem">{content.stem}</p>
+                    {m.pickedIndex !== null && (
+                      <p className="your-answer">Ta réponse : {content.opts[m.pickedIndex]}</p>
+                    )}
+                    <p className="right-answer">
+                      Bonne réponse : <strong>{content.opts[m.drawn.correctIndex]}</strong>
+                    </p>
+                    <p className="mistake-why">{content.why}</p>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       )}
 

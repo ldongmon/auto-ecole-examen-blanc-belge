@@ -9,6 +9,11 @@ import QuestionCard from "./QuestionCard";
 import CorrectionPanel from "./CorrectionPanel";
 import ResultScreen from "./ResultScreen";
 
+export interface Mistake {
+  drawn: DrawnQuestion;
+  pickedIndex: number | null;
+}
+
 interface Props {
   bank: QuestionBank;
   lang: Lang;
@@ -25,10 +30,11 @@ interface Props {
 export default function ExamRunner({ bank, lang, region, mode = "examen" }: Props) {
   const deck = useMemo(() => drawExam({ bank, lang, region }), [bank, lang, region]);
   const [state, setState] = useState(() => initExam(deck));
-  const [pendingCorrection, setPendingCorrection] = useState<{
-    drawn: DrawnQuestion;
-    pickedIndex: number | null;
-  } | null>(null);
+  const [pendingCorrection, setPendingCorrection] = useState<Mistake | null>(null);
+  // Historique des réponses ratées (faux + abstentions), pour "Revoir mes
+  // erreurs" côté résultat. Distinct de `state.faults` (scoring.ts) qui ne
+  // garde que des identifiants/thèmes, pas la question complète à réafficher.
+  const [mistakes, setMistakes] = useState<Mistake[]>([]);
 
   if (deck.length === 0) {
     return (
@@ -42,6 +48,9 @@ export default function ExamRunner({ bank, lang, region, mode = "examen" }: Prop
 
   function handleAnswer(current: DrawnQuestion, picked: number | null) {
     setState((s) => answer(s, picked, { enforceAutoFail: mode === "examen" }));
+    if (picked !== current.correctIndex) {
+      setMistakes((m) => [...m, { drawn: current, pickedIndex: picked }]);
+    }
     if (mode === "entrainement") {
       setPendingCorrection({ drawn: current, pickedIndex: picked });
     }
@@ -59,7 +68,7 @@ export default function ExamRunner({ bank, lang, region, mode = "examen" }: Prop
 
   if (state.finished) {
     const result = computeResult(state, deck.length, CONFIG[MODE].passMark);
-    return <ResultScreen result={result} mode={mode} />;
+    return <ResultScreen result={result} mode={mode} mistakes={mistakes} />;
   }
 
   const current = state.deck[state.index];

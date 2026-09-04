@@ -252,6 +252,15 @@ h1 {
   border-color: var(--accent);
 }
 
+.question-visual {
+  width: 140px;
+  max-width: 40%;
+  margin: 0 auto 18px;
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 10px;
+}
+
 .stem {
   font-size: 1.05rem;
   margin: 0 0 20px;
@@ -369,6 +378,85 @@ h1 {
 .why-box p {
   margin: 0;
   font-size: 0.92rem;
+}
+
+/* Analyse par chapitre */
+.theme-stats {
+  margin-bottom: 20px;
+}
+
+.theme-group {
+  margin-bottom: 16px;
+}
+
+.theme-group h3 {
+  font-size: 0.85rem;
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+}
+
+.theme-group ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.theme-group li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  background: var(--surface);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.theme-percent {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.weak-percent {
+  color: var(--grave);
+}
+
+.strong-percent {
+  color: var(--ok);
+}
+
+/* Revoir mes erreurs */
+.review-mistakes {
+  margin-bottom: 20px;
+}
+
+.mistake-list {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.mistake-item {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px;
+}
+
+.mistake-stem {
+  font-weight: 600;
+  margin: 0 0 8px;
+  font-size: 0.92rem;
+}
+
+.mistake-why {
+  color: #444;
+  font-size: 0.85rem;
+  margin: 8px 0 0;
 }
 
 .score {
