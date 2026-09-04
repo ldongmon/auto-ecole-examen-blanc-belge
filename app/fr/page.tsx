@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import type { Region } from "@/lib/exam/types";
 
 const REGIONS: { value: Region; label: string }[] = [
@@ -40,6 +41,9 @@ export default function Home() {
           Démarrer l&apos;examen blanc
         </button>
         <p className="note">Gratuit, sans compte. Version de développement — corpus non encore validé.</p>
+        <p className="note">
+          <Link href="/fr/centre">Trouver mon centre d&apos;examen →</Link>
+        </p>
       </div>
     </main>
   );

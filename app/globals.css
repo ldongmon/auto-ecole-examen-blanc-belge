@@ -82,6 +82,7 @@ h1 {
 }
 
 .go {
+  display: block;
   width: 100%;
   padding: 14px;
   border: none;
@@ -91,6 +92,9 @@ h1 {
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;
 }
 
 .go:hover {
@@ -260,4 +264,33 @@ h1 {
   color: var(--grave);
   font-size: 0.85rem;
   margin: 8px 0 0;
+}
+
+/* Centres d'examen */
+.centre-index {
+  max-width: 640px;
+}
+
+.centre-group h2 {
+  font-size: 1rem;
+  margin: 20px 0 8px;
+}
+
+.centre-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 4px 12px;
+  margin: 0 0 4px;
+  padding: 0;
+  list-style: none;
+}
+
+.centre-list a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.centre-list a:hover {
+  text-decoration: underline;
 }

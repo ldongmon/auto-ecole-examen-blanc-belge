@@ -63,6 +63,19 @@ export interface DrawnQuestion {
 
 export type AnswerOutcome = "correct" | "wrong" | "abstention";
 
+export interface Centre {
+  slug: string;
+  ville: string;
+  region: Region;
+  reseau: string;
+  operateur_url: string;
+}
+
+export interface CentreBank {
+  _meta: Record<string, unknown>;
+  centres: Centre[];
+}
+
 export interface FaultRecord {
   questionId: string;
   theme: string;

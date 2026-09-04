@@ -1,0 +1,43 @@
+{
+  "_meta": {
+    "version": "0.1.0",
+    "date": "2026-09-04",
+    "note": "Liste rassemblée depuis des sources tierces (permis.online, gocavlaanderen.be, recherches web) le 2026-09-04 — PAS vérifiée auprès des opérateurs eux-mêmes. Adresses et horaires précis volontairement omis : trop susceptibles de changer, et une info fausse sur où se rendre coûte cher en crédibilité (même principe que ref_legale dans questions.json). Chaque page renvoie vers le site officiel de l'opérateur pour la réservation réelle. À revérifier périodiquement."
+  },
+  "centres": [
+    { "slug": "bruxelles-anderlecht", "ville": "Anderlecht", "region": "BRU", "reseau": "La Sécurité Automobile", "operateur_url": "https://www.securiteautomobile.be" },
+    { "slug": "bruxelles-evere", "ville": "Evere", "region": "BRU", "reseau": "ACT", "operateur_url": "https://www.autocontrole.be" },
+
+    { "slug": "ottignies-louvain-la-neuve", "ville": "Ottignies-Louvain-la-Neuve", "region": "WAL", "reseau": "Autosécurité", "operateur_url": "https://www.autosecurite.be" },
+    { "slug": "tournai-marquain", "ville": "Tournai", "region": "WAL", "reseau": "Autosécurité", "operateur_url": "https://www.autosecurite.be" },
+    { "slug": "mons-cuesmes", "ville": "Mons", "region": "WAL", "reseau": "Autosécurité", "operateur_url": "https://www.autosecurite.be" },
+    { "slug": "lobbes", "ville": "Lobbes", "region": "WAL", "reseau": "Autosécurité", "operateur_url": "https://www.autosecurite.be" },
+    { "slug": "namur-suarlee", "ville": "Namur", "region": "WAL", "reseau": "Autosécurité", "operateur_url": "https://www.autosecurite.be" },
+    { "slug": "huy-tihange", "ville": "Huy", "region": "WAL", "reseau": "Autosécurité", "operateur_url": "https://www.autosecurite.be" },
+    { "slug": "liege-wandre", "ville": "Liège", "region": "WAL", "reseau": "Autosécurité", "operateur_url": "https://www.autosecurite.be" },
+    { "slug": "eupen-lontzen", "ville": "Eupen", "region": "WAL", "reseau": "Autosécurité", "operateur_url": "https://www.autosecurite.be" },
+    { "slug": "marche-en-famenne", "ville": "Marche-en-Famenne", "region": "WAL", "reseau": "Autosécurité", "operateur_url": "https://www.autosecurite.be" },
+    { "slug": "bastogne", "ville": "Bastogne", "region": "WAL", "reseau": "Autosécurité", "operateur_url": "https://www.autosecurite.be" },
+    { "slug": "arlon", "ville": "Arlon", "region": "WAL", "reseau": "Autosécurité", "operateur_url": "https://www.autosecurite.be" },
+    { "slug": "braine-le-comte", "ville": "Braine-le-Comte", "region": "WAL", "reseau": "AIBV", "operateur_url": "https://www.aibv.be" },
+    { "slug": "charleroi-couillet", "ville": "Charleroi", "region": "WAL", "reseau": "AIBV", "operateur_url": "https://www.aibv.be" },
+    { "slug": "mariembourg", "ville": "Mariembourg", "region": "WAL", "reseau": "AIBV", "operateur_url": "https://www.aibv.be" },
+
+    { "slug": "antwerpen-deurne", "ville": "Antwerpen (Deurne)", "region": "VLA", "reseau": "Autoveiligheid", "operateur_url": "https://www.gocavlaanderen.be/examencentra" },
+    { "slug": "geel", "ville": "Geel", "region": "VLA", "reseau": "Autoveiligheid", "operateur_url": "https://www.gocavlaanderen.be/examencentra" },
+    { "slug": "kontich", "ville": "Kontich", "region": "VLA", "reseau": "Autoveiligheid", "operateur_url": "https://www.gocavlaanderen.be/examencentra" },
+    { "slug": "alken", "ville": "Alken", "region": "VLA", "reseau": "Autoveiligheid", "operateur_url": "https://www.gocavlaanderen.be/examencentra" },
+    { "slug": "bree", "ville": "Bree", "region": "VLA", "reseau": "Autoveiligheid", "operateur_url": "https://www.gocavlaanderen.be/examencentra" },
+    { "slug": "leuven-haasrode", "ville": "Leuven (Haasrode)", "region": "VLA", "reseau": "Autoveiligheid", "operateur_url": "https://www.gocavlaanderen.be/examencentra" },
+    { "slug": "gent-sint-denijs-westrem", "ville": "Gent (Sint-Denijs-Westrem)", "region": "VLA", "reseau": "SBAT", "operateur_url": "https://www.gocavlaanderen.be/examencentra" },
+    { "slug": "eeklo", "ville": "Eeklo", "region": "VLA", "reseau": "SBAT", "operateur_url": "https://www.gocavlaanderen.be/examencentra" },
+    { "slug": "brakel", "ville": "Brakel", "region": "VLA", "reseau": "SBAT", "operateur_url": "https://www.gocavlaanderen.be/examencentra" },
+    { "slug": "erembodegem", "ville": "Erembodegem", "region": "VLA", "reseau": "SBAT", "operateur_url": "https://www.gocavlaanderen.be/examencentra" },
+    { "slug": "sint-niklaas", "ville": "Sint-Niklaas", "region": "VLA", "reseau": "SBAT", "operateur_url": "https://www.gocavlaanderen.be/examencentra" },
+    { "slug": "asse-mollem", "ville": "Asse (Mollem)", "region": "VLA", "reseau": "AIBV", "operateur_url": "https://www.gocavlaanderen.be/examencentra" },
+    { "slug": "wevelgem", "ville": "Wevelgem", "region": "VLA", "reseau": "KM", "operateur_url": "https://www.gocavlaanderen.be/examencentra" },
+    { "slug": "brugge", "ville": "Brugge", "region": "VLA", "reseau": "KM", "operateur_url": "https://www.gocavlaanderen.be/examencentra" },
+    { "slug": "roeselare", "ville": "Roeselare", "region": "VLA", "reseau": "KM", "operateur_url": "https://www.gocavlaanderen.be/examencentra" },
+    { "slug": "oostende", "ville": "Oostende", "region": "VLA", "reseau": "KM", "operateur_url": "https://www.gocavlaanderen.be/examencentra" }
+  ]
+}
