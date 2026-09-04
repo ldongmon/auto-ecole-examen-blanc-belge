@@ -22,18 +22,35 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Adresse email invalide." }, { status: 400 });
   }
 
-  const apiKey = process.env.BREVO_API_KEY;
+  const apiKey = process.env.BREVO_API_KEY?.trim();
   if (!apiKey) {
     console.error("[subscribe] BREVO_API_KEY manquante — voir .env.local.example.");
     return NextResponse.json({ error: "Service d'inscription indisponible pour le moment." }, { status: 503 });
   }
+  if (apiKey.startsWith("xsmtpsib-")) {
+    // Erreur de copier-coller fréquente : Brevo a deux clés distinctes sous
+    // Settings > SMTP & API — l'onglet "SMTP" (xsmtpsib-...) sert au relais
+    // email, pas à l'API REST. Il faut la clé de l'onglet "API Keys" (xkeysib-...).
+    console.error(
+      "[subscribe] BREVO_API_KEY ressemble à une clé SMTP (xsmtpsib-...), pas à une clé API v3 " +
+        "(xkeysib-...). Onglet Brevo > Settings > SMTP & API > API Keys."
+    );
+    return NextResponse.json({ error: "Service d'inscription mal configuré." }, { status: 503 });
+  }
 
-  const listId = process.env.BREVO_LIST_ID;
+  // Tolère les erreurs de copier-coller courantes depuis le dashboard Brevo
+  // (l'ID de liste y est affiché précédé de "#").
+  const rawListId = process.env.BREVO_LIST_ID?.trim().replace(/^#/, "");
+  const listId = rawListId ? Number(rawListId) : undefined;
+  if (rawListId && Number.isNaN(listId)) {
+    console.error(`[subscribe] BREVO_LIST_ID invalide : "${process.env.BREVO_LIST_ID}".`);
+  }
+
   const payload: Record<string, unknown> = {
     email,
     updateEnabled: true, // ne pas échouer si l'email est déjà un contact existant
   };
-  if (listId) payload.listIds = [Number(listId)];
+  if (listId && !Number.isNaN(listId)) payload.listIds = [listId];
 
   let brevoRes: Response;
   try {
