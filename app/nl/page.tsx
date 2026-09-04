@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import type { Region } from "@/lib/exam/types";
 
 const REGIONS: { value: Region; label: string }[] = [
@@ -77,6 +78,9 @@ export default function HomeNL() {
           </div>
 
           <p className="note">Gratis, zonder account. Ontwikkelversie — de vragenbank is nog niet gevalideerd.</p>
+          <p className="note">
+            <Link href="/nl/centre">Mijn examencentrum vinden →</Link>
+          </p>
         </div>
       </section>
 
@@ -105,6 +109,20 @@ export default function HomeNL() {
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      <section className="wrap section-block">
+        <div className="section-inner infos-teaser">
+          <h2>Goed om te weten voor je je aanbiedt</h2>
+          <ul>
+            <li>Een geslaagd theorie-examen is 3 jaar geldig, niet verlengbaar.</li>
+            <li>Na 2 opeenvolgende mislukkingen worden 12 uur lessen bij een erkende rijschool verplicht.</li>
+            <li>Je opleiding moet volledig in hetzelfde gewest verlopen.</li>
+          </ul>
+          <Link className="go secondary" href="/nl/infos">
+            Alle praktische info bekijken →
+          </Link>
         </div>
       </section>
     </main>

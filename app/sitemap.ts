@@ -9,15 +9,24 @@ const bank = centresData as unknown as CentreBank;
 const SITE_URL = process.env.SITE_URL ?? "http://localhost:3000";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages = ["/fr", "/fr/centre"].map((path) => ({
+  const staticPages = [
+    "/fr",
+    "/fr/centre",
+    "/fr/infos",
+    "/fr/faq",
+    "/nl",
+    "/nl/centre",
+    "/nl/infos",
+    "/nl/faq",
+  ].map((path) => ({
     url: `${SITE_URL}${path}`,
     lastModified: new Date(),
   }));
 
-  const centrePages = bank.centres.map((c) => ({
-    url: `${SITE_URL}/fr/centre/${c.slug}`,
-    lastModified: new Date(),
-  }));
+  const centrePages = bank.centres.flatMap((c) => [
+    { url: `${SITE_URL}/fr/centre/${c.slug}`, lastModified: new Date() },
+    { url: `${SITE_URL}/nl/centre/${c.slug}`, lastModified: new Date() },
+  ]);
 
   return [...staticPages, ...centrePages];
 }

@@ -13,12 +13,14 @@ const FR_LINKS = [
   { href: "/fr/faq", label: "FAQ" },
 ];
 
-// Le site néerlandophone n'a pour l'instant que l'accueil et le moteur
-// d'examen (voir app/nl) — pas de lien vers des pages qui n'existent pas
-// encore (centres, infos, FAQ, progression restent à construire côté NL).
+// La progression (localStorage) reste FR-only pour l'instant — pas de lien
+// NL vers une page qui n'existe pas encore.
 const NL_LINKS = [
   { href: "/nl", label: "Home" },
   { href: "/nl/examen?mode=entrainement", label: "Oefenen" },
+  { href: "/nl/centre", label: "Examencentra" },
+  { href: "/nl/infos", label: "Praktische info" },
+  { href: "/nl/faq", label: "FAQ" },
 ];
 
 export default function SiteHeader() {
