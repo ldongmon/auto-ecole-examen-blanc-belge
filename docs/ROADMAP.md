@@ -2,6 +2,34 @@
 
 Version 1.0 — 3 septembre 2026. À relire à chaque jalon.
 
+> **Statut réel au 4 septembre 2026** (mis à jour après la première semaine de dev — voir aussi
+> `docs/REVUE-MONITEUR.md` et l'historique Git pour le détail commit par commit) :
+>
+> **P0 dev — fait :**
+> moteur d'examen (barème réel, arrêt à 2 fautes graves, abstention), lecture vocale FR/NL,
+> écran de résultat (séquence CLAUDE.md §4, y compris analyse par thème et « revoir mes erreurs »
+> ajoutés au-delà du plan initial), capture d'email réelle vers **Brevo** (choisi plutôt que Resend —
+> mieux adapté à une liste marketing/nurture pour P1), 32 pages centre d'examen, `sitemap.xml`,
+> déploiement continu GitHub → Vercel.
+>
+> **P0 dev — pas fait :**
+> les 32 pages centre ne sont **pas encore soumises à Google Search Console** ; pas de domaine
+> personnalisé ni d'analytics ; corpus toujours à **46 questions** (cible 100, voir ci-dessous) ;
+> `MODE="demo"` sert tout le corpus en attendant la validation (aucune question `live`).
+>
+> **Chemin critique P0 (hors dev, non commencé) :** contact moniteur agréé FR, rédaction des
+> ~54 questions manquantes pour atteindre 100, levée des 4 `POINT CRITIQUE`.
+>
+> **Travail fait au-delà du plan initial (« V2 »)**, à la demande explicite du client une fois le v0
+> dev vu tourner : navigation complète du site (header/footer, FAQ, page infos pratiques), **mode
+> entraînement** distinct du mode examen avec correction pédagogique après chaque question,
+> **progression localStorage** (compromis assumé face à l'absence de comptes en v0), **site
+> néerlandais partiellement fonctionnel en avance sur P3** (accueil, examen, centres, infos, FAQ —
+> pas encore la progression NL), 7 panneaux illustrés en SVG (couleurs RAL vérifiées), restylage
+> visuel de l'accueil et du tableau de bord de progression. Rien de tout ça n'était dans la roadmap
+> initiale ; ça ne retire rien au chemin critique ci-dessus (validation moniteur), qui reste hors de
+> portée du code.
+
 Cette roadmap est calée sur une contrainte externe non négociable : **la saisonnalité de la demande**. Les pics de recherche sont janvier-février et juillet-septembre. Une page indexée met environ 3 mois à produire du trafic organique significatif. Le v0 doit donc être en ligne **fin octobre 2026 au plus tard** pour capter le pic de janvier 2027. Tout retard au-delà décale la monétisation de six mois.
 
 Hypothèse de charge : **10 à 12 heures par semaine**, en parallèle d'une activité principale.
@@ -43,22 +71,22 @@ Le corpus compte 60 questions. C'est **insuffisant** : un examen de 50 questions
 
 | Tâche | Charge |
 | --- | --- |
-| Projet Next.js, i18n `/fr` et `/nl` en place (NL vide) | 4 h |
-| Port du moteur de score depuis `reference/examen-blanc-belge.jsx` | 6 h |
-| Arrêt prématuré de l'examen à la 2e faute grave | 2 h |
-| Bouton « je ne réponds pas » et comptabilisation à −1 | 2 h |
-| Lecture vocale (Web Speech API), FR avec septante/nonante | 4 h |
-| Écran de résultat complet (séquence en 6 points du CLAUDE.md) | 6 h |
-| Capture d'email (Resend ou Brevo) | 3 h |
-| 32 pages « centre d'examen » générées depuis un fichier de données | 8 h |
-| Déploiement Vercel, domaine, analytics | 3 h |
+| Projet Next.js, i18n `/fr` et `/nl` en place (NL vide) | 4 h | ✅ fait — NL en fait déjà partiellement rempli, en avance sur P3 |
+| Port du moteur de score depuis `reference/examen-blanc-belge.jsx` | 6 h | ✅ fait |
+| Arrêt prématuré de l'examen à la 2e faute grave | 2 h | ✅ fait |
+| Bouton « je ne réponds pas » et comptabilisation à −1 | 2 h | ✅ fait |
+| Lecture vocale (Web Speech API), FR avec septante/nonante | 4 h | ✅ fait |
+| Écran de résultat complet (séquence en 6 points du CLAUDE.md) | 6 h | ✅ fait |
+| ~~Capture d'email (Resend ou Brevo)~~ Capture d'email (Brevo) | 3 h | ✅ fait |
+| 32 pages « centre d'examen » générées depuis un fichier de données | 8 h | ✅ fait — indexation Search Console pas encore soumise |
+| Déploiement Vercel, domaine, analytics | 3 h | ⚠️ Vercel fait ; domaine perso et analytics pas faits |
 
 ### Porte de sortie P0 — 26 octobre 2026
 
-- ☐ 100 questions au statut `live`, signées par un moniteur
-- ☐ Examen blanc jouable de bout en bout, barème conforme
-- ☐ 32 pages centre en ligne et soumises à l'indexation
-- ☐ Zéro question au statut `draft` servie en production
+- ☐ 100 questions au statut `live`, signées par un moniteur — **bloquant, corpus à 46 questions, aucune `live`**
+- ✅ Examen blanc jouable de bout en bout, barème conforme
+- ⚠️ 32 pages centre en ligne — **soumission à l'indexation pas encore faite**
+- ❌ **Non respecté actuellement** : `MODE="demo"` (`lib/exam/config.ts`) sert tout le corpus non validé, y compris sur le déploiement Vercel réellement public — pas de distinction dev/production dans le code. Mitigé par le bandeau du pied de page (« corpus non encore validé »), mais ça ne remplace pas la règle. À corriger avant toute vraie mise en avant publique du lien : soit brancher `MODE` sur une variable d'environnement, soit accepter consciemment le risque tant que le trafic reste confidentiel.
 
 **Si le contenu n'est pas validé au 26 octobre : mettre en ligne quand même avec les questions validées disponibles, même s'il n'y en a que 70.** L'indexation ne se rattrape pas ; le corpus, si.
 
