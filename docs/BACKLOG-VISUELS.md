@@ -28,10 +28,24 @@ l'estime sans perdre en fiabilité.
 | Génération par IA image | Variable, mais dangereux ici | Quasi gratuit | **Élevé** — erreur factuelle possible sur une règle de priorité/position, inacceptable sur du contenu d'examen. Explicitement déconseillé. |
 | Scène 3D réutilisable (kit de carrefour redécorable) | Pro, scalable | Fort au démarrage, faible ensuite | Compétence technique à acquérir |
 
-**Recommandation en attente d'arbitrage client** : vraies photos en premier (gratuit, contrôle total de la conformité au brief), illustrateur freelance en complément pour les scènes difficiles à photographier (ex. agent qui règle la circulation).
+**Décision du client (2026-09-04)** : vraies photos d'abord, illustrateur freelance en
+complément pour ce qui est difficile à photographier soi-même.
+
+## Répartition proposée
+
+| Technique | Questions | Pourquoi |
+| --- | --- | --- |
+| **Photo** | `q16`, `q17`, `q36`, `q43` | Situations reproductibles avec un proche qui coopère (conducteur, piéton, cycliste), sur une route ordinaire, sans dépendre d'un tiers ou d'un timing rare. |
+| **Photo si l'occasion se présente, sinon illustrateur** | `q19`, `q34`, `q50` | Faisable en vrai mais dépend de conditions qu'on ne maîtrise pas : un bus réel au bon moment (q19), un tracteur réel sur une route à profil de côte adéquat (q34), un trafic dense réel sur autoroute photographié en sécurité (q50). |
+| **Illustrateur** | `q31` | Un agent de police en tenue réglementaire qui règle la circulation ne se met pas en scène sur commande — situation rare, personne réelle, tenue officielle. Bien plus simple et plus sûr en illustration. |
 
 ## Brief de production
 
 Fait — voir `docs/BRIEF-SCENES.md` : fiche par question (ce qui doit/ne doit pas apparaître,
 angle, ce qu'il ne faut surtout pas montrer), utilisable pour une vraie photo ou une
-illustration. Reste à trancher : quelle technique, et qui produit.
+illustration.
+
+## Brief de commande illustrateur
+
+Fait — voir `docs/BRIEF-ILLUSTRATEUR.md` : prêt à poster sur Malt/Fiverr/Upwork pour `q31`
+(et `q19`/`q34`/`q50` en repli si les photos ne sont pas concluantes).
