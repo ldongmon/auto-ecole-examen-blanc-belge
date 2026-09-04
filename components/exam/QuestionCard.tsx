@@ -5,7 +5,7 @@ import type { DrawnQuestion } from "@/lib/exam/types";
 import { CONFIG, MODE } from "@/lib/exam/config";
 import { isSpeechSupported, speak, stopSpeaking } from "@/lib/exam/speech";
 import { uiStrings } from "@/lib/exam/i18n";
-import QuestionVisual from "./QuestionVisual";
+import Sign from "./Sign";
 
 interface Props {
   drawn: DrawnQuestion;
@@ -82,7 +82,15 @@ export default function QuestionCard({ drawn, questionNumber, total, onAnswer }:
           </button>
         )}
       </div>
-      <QuestionVisual questionId={drawn.question.id} />
+      {drawn.question.signs && drawn.question.signs.length > 0 && (
+        <div className="question-visual-row">
+          {drawn.question.signs.map((code) => (
+            <div className="question-visual" key={code}>
+              <Sign code={code} lang={drawn.lang} />
+            </div>
+          ))}
+        </div>
+      )}
       <p className="stem">{content.stem}</p>
       <div className="opts">
         {content.opts.map((opt, i) => (

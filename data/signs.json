@@ -1,0 +1,105 @@
+{
+  "_meta": {
+    "version": "0.1.0",
+    "date": "2026-09-04",
+    "note": "Liste dérivée de scripts/audit_signs.py (codes réellement cités dans data/questions.json), pas devinée. Régimes : AR1975 (en vigueur jusqu'au 31 mai 2027, seul régime servi actuellement) et CVP2027 (à partir du 1er juin 2027, stocké mais jamais servi avant cette date). status suit la même logique que les questions : draft -> validated -> live. Un panneau non live n'est pas servi quand NODE_ENV=production."
+  },
+  "signs": [
+    {
+      "code": "B1",
+      "regime": "AR1975",
+      "valid_from": "1975-12-01",
+      "valid_until": "2045-01-01",
+      "category": "priorite",
+      "label": { "fr": "Céder le passage", "nl": "Voorrang verlenen" },
+      "asset": "assets/signs/ar1975/B1.svg",
+      "source": "redessiné depuis l'AR du 01/12/1975",
+      "licence": "acte officiel de l'autorité — non protégé",
+      "status": "draft"
+    },
+    {
+      "code": "B9",
+      "regime": "AR1975",
+      "valid_from": "1975-12-01",
+      "valid_until": "2045-01-01",
+      "category": "priorite",
+      "label": { "fr": "Route prioritaire", "nl": "Voorrangsweg" },
+      "asset": "assets/signs/ar1975/B9.svg",
+      "source": "redessiné depuis l'AR du 01/12/1975",
+      "licence": "acte officiel de l'autorité — non protégé",
+      "status": "draft"
+    },
+    {
+      "code": "C1",
+      "regime": "AR1975",
+      "valid_from": "1975-12-01",
+      "valid_until": "2045-01-01",
+      "category": "interdiction",
+      "label": { "fr": "Sens interdit à tout conducteur", "nl": "Verboden richting voor iedere bestuurder" },
+      "asset": "assets/signs/ar1975/C1.svg",
+      "source": "redessiné depuis l'AR du 01/12/1975",
+      "licence": "acte officiel de l'autorité — non protégé",
+      "status": "draft"
+    },
+    {
+      "code": "D1",
+      "regime": "AR1975",
+      "valid_from": "1975-12-01",
+      "valid_until": "2045-01-01",
+      "category": "obligation",
+      "label": { "fr": "Direction obligatoire", "nl": "Verplichte rijrichting" },
+      "asset": "assets/signs/ar1975/D1.svg",
+      "source": "redessiné depuis l'AR du 01/12/1975",
+      "licence": "acte officiel de l'autorité — non protégé",
+      "status": "draft"
+    },
+    {
+      "code": "E1",
+      "regime": "AR1975",
+      "valid_from": "1975-12-01",
+      "valid_until": "2045-01-01",
+      "category": "stationnement",
+      "label": { "fr": "Stationnement interdit", "nl": "Verboden te parkeren" },
+      "asset": "assets/signs/ar1975/E1.svg",
+      "source": "redessiné depuis l'AR du 01/12/1975",
+      "licence": "acte officiel de l'autorité — non protégé",
+      "status": "draft"
+    },
+    {
+      "code": "E3",
+      "regime": "AR1975",
+      "valid_from": "1975-12-01",
+      "valid_until": "2045-01-01",
+      "category": "stationnement",
+      "label": { "fr": "Arrêt et stationnement interdits", "nl": "Verboden te stoppen en te parkeren" },
+      "asset": "assets/signs/ar1975/E3.svg",
+      "source": "redessiné depuis l'AR du 01/12/1975",
+      "licence": "acte officiel de l'autorité — non protégé",
+      "status": "draft"
+    },
+    {
+      "code": "F4a",
+      "regime": "AR1975",
+      "valid_from": "1975-12-01",
+      "valid_until": "2045-01-01",
+      "category": "zone",
+      "label": { "fr": "Début de zone 30", "nl": "Begin zone 30" },
+      "asset": "assets/signs/ar1975/F4a.svg",
+      "source": "redessiné depuis l'AR du 01/12/1975",
+      "licence": "acte officiel de l'autorité — non protégé",
+      "status": "draft"
+    },
+    {
+      "code": "A23",
+      "regime": "AR1975",
+      "valid_from": "1975-12-01",
+      "valid_until": "2045-01-01",
+      "category": "danger",
+      "label": { "fr": "Endroit fréquenté par des enfants", "nl": "Plaats waar veel kinderen komen" },
+      "asset": "assets/signs/ar1975/A23.svg",
+      "source": "redessiné depuis l'AR du 01/12/1975",
+      "licence": "acte officiel de l'autorité — non protégé",
+      "status": "draft"
+    }
+  ]
+}

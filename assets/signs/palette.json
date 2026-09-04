@@ -1,0 +1,15 @@
+{
+  "_meta": {
+    "note": "Seule source de vérité couleur pour les panneaux AR1975. Aucun fichier .svg ne doit contenir une valeur hexadécimale absente d'ici — vérifié par scripts/test_signs.mjs. Un SVG statique ne peut pas « importer » ce fichier au sens JS : chaque .svg reprend ces valeurs exactes à la main, jamais une valeur inventée.",
+    "red": "RAL 3020 (rouge trafic) — confirmé le 2026-09-04 via une fiche produit de fabricant de panneaux homologués belges.",
+    "yellow": "RAL 1023 (jaune trafic) — confirmé, même source.",
+    "blue": "RAL 5017 (bleu trafic) — standard européen courant pour les signaux d'obligation/indication, PAS confirmé sur une fiche belge officielle. À vérifier avant mise en production réelle, même logique que ref_legale dans data/questions.json.",
+    "white": "Blanc standard, pas une teinte RAL distincte.",
+    "black": "Approximation pour les pictogrammes (silhouettes), pas une teinte RAL officielle vérifiée."
+  },
+  "red": "#cc0605",
+  "blue": "#063971",
+  "yellow": "#fad201",
+  "white": "#ffffff",
+  "black": "#1a1a1a"
+}

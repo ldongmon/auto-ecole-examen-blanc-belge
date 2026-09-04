@@ -1,0 +1,11 @@
+<!-- A23 — Endroit fréquenté par des enfants. Triangle pointe en haut, bord rouge,
+     pictogramme deux silhouettes d'enfants (path, pas de police tierce).
+     Couleurs reprises de ../palette.json (red, white, black). Aucun <text>, aucun effet. -->
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Panneau A23 : endroit fréquenté par des enfants">
+  <polygon points="50,8 94,88 6,88" fill="#cc0605" />
+  <polygon points="50,20 84,82 16,82" fill="#ffffff" />
+  <circle cx="38" cy="55" r="6" fill="#1a1a1a" />
+  <polygon points="30,78 46,78 42,60 34,60" fill="#1a1a1a" />
+  <circle cx="60" cy="50" r="7" fill="#1a1a1a" />
+  <polygon points="50,78 70,78 65,58 55,58" fill="#1a1a1a" />
+</svg>

@@ -1,0 +1,6 @@
+<!-- B1 — Céder le passage. Triangle pointe en bas, bord rouge, fond blanc.
+     Couleurs reprises de ../palette.json (red). Aucun <text>, aucun effet. -->
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Panneau B1 : céder le passage">
+  <polygon points="6,10 94,10 50,90" fill="#cc0605" />
+  <polygon points="15,21 85,21 50,75" fill="#ffffff" />
+</svg>

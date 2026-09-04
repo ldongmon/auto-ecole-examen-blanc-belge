@@ -35,7 +35,8 @@
       "id": "q15", "theme": {"fr": "Priorité", "nl": "Voorrang"}, "sous_theme": "rond-point",
       "gravite": "ordinaire", "degre": null, "ref_legale": "AR 01/12/1975, art. 12.3.1 + signal B1",
       "region_scope": "ALL",
-      "media": {"type": "image", "brief": "Vue conducteur à l'approche d'un rond-point à deux bandes, signal B1 (triangle pointe en bas) visible à droite, deux véhicules déjà engagés sur l'anneau.", "alt_fr": "Approche d'un rond-point signalé par un triangle pointe en bas", "alt_nl": "Nadering van een rotonde met omgekeerde driehoek"},
+      "media": null,
+      "signs": ["B1"],
       "fr": {
         "stem": "Vous abordez ce rond-point. Un signal B1 est placé à l'entrée. Deux véhicules circulent déjà sur l'anneau.",
         "opts": ["Vous cédez le passage aux véhicules déjà engagés sur l'anneau", "Vous conservez la priorité de droite et vous vous engagez", "Vous vous engagez si votre vitesse est inférieure à 30 km/h"],
@@ -158,7 +159,8 @@
     {
       "id": "q21", "theme": {"fr": "Panneaux", "nl": "Verkeersborden"}, "sous_theme": "route prioritaire",
       "gravite": "ordinaire", "degre": null, "ref_legale": "AR 01/12/1975, signal B9", "region_scope": "ALL",
-      "media": {"type": "image", "brief": "Signal B9 : losange jaune bordé de blanc, sur poteau, en bord de chaussée.", "alt_fr": "Losange jaune bordé de blanc", "alt_nl": "Gele ruit met witte rand"},
+      "media": null,
+      "signs": ["B9"],
       "fr": {
         "stem": "Que signifie ce signal ?",
         "opts": ["Vous circulez sur une route prioritaire", "Vous devez céder le passage au prochain carrefour", "Le stationnement est interdit au-delà du signal"],
@@ -179,7 +181,8 @@
       "id": "q22", "theme": {"fr": "Panneaux", "nl": "Verkeersborden"}, "sous_theme": "sens interdit",
       "gravite": "grave", "degre": 3, "faute_grave_ref": "Emprunter un sens interdit",
       "ref_legale": "AR 01/12/1975, signal C1", "region_scope": "ALL",
-      "media": {"type": "image", "brief": "Signal C1 : disque rouge avec barre horizontale blanche, à l'entrée d'une rue étroite.", "alt_fr": "Disque rouge à barre blanche horizontale", "alt_nl": "Rode schijf met witte horizontale balk"},
+      "media": null,
+      "signs": ["C1"],
       "fr": {
         "stem": "Ce signal est placé à l'entrée de la rue. Votre destination se trouve à 50 mètres dans cette rue.",
         "opts": ["Vous n'y entrez pas et vous contournez", "Vous y entrez lentement sur cette courte distance", "Vous y entrez si aucun véhicule n'arrive en face"],
@@ -200,7 +203,8 @@
       "id": "q23", "theme": {"fr": "Vitesse", "nl": "Snelheid"}, "sous_theme": "zone 30",
       "gravite": "grave", "degre": null, "faute_grave_ref": "Tout dépassement de la vitesse autorisée",
       "ref_legale": "AR 01/12/1975, art. 11 + signal F4a", "region_scope": "ALL",
-      "media": {"type": "image", "brief": "Signal F4a : panneau carré bleu portant un disque de limitation à 30 et la mention ZONE.", "alt_fr": "Panneau d'entrée de zone 30", "alt_nl": "Bord begin zone 30"},
+      "media": null,
+      "signs": ["F4a"],
       "fr": {
         "stem": "Vous franchissez ce signal. Jusqu'où la limitation s'applique-t-elle ?",
         "opts": ["Jusqu'au signal de fin de zone", "Jusqu'au prochain carrefour", "Sur 300 mètres"],
@@ -220,7 +224,8 @@
     {
       "id": "q24", "theme": {"fr": "Stationnement", "nl": "Parkeren"}, "sous_theme": "signal d'interdiction",
       "gravite": "ordinaire", "degre": null, "ref_legale": "AR 01/12/1975, signaux E1 et E3", "region_scope": "ALL",
-      "media": {"type": "image", "brief": "Deux signaux côte à côte : disque bleu cerclé de rouge barré d'une seule diagonale, et disque bleu cerclé de rouge barré de deux diagonales croisées.", "alt_fr": "Signaux d'interdiction de stationner et d'interdiction d'arrêt", "alt_nl": "Borden parkeerverbod en stilstaan- en parkeerverbod"},
+      "media": null,
+      "signs": ["E1", "E3"],
       "fr": {
         "stem": "Le signal de gauche ne porte qu'une seule barre diagonale. Que vous interdit-il ?",
         "opts": ["De stationner, mais l'arrêt reste possible", "De vous arrêter et de stationner", "De circuler dans cette rue"],
@@ -240,7 +245,8 @@
     {
       "id": "q25", "theme": {"fr": "Panneaux", "nl": "Verkeersborden"}, "sous_theme": "danger",
       "gravite": "ordinaire", "degre": null, "ref_legale": "AR 01/12/1975, signal A23", "region_scope": "ALL",
-      "media": {"type": "image", "brief": "Signal A23 : triangle à bord rouge représentant deux enfants, implanté avant une école.", "alt_fr": "Triangle de danger représentant des enfants", "alt_nl": "Gevaarsbord met kinderen"},
+      "media": null,
+      "signs": ["A23"],
       "fr": {
         "stem": "Vous approchez de ce signal en pleine journée. Aucun enfant n'est visible.",
         "opts": ["Vous modérez votre vitesse et restez prêt à freiner", "Vous conservez votre vitesse, le signal ne limite rien", "Vous vous arrêtez avant le signal"],
@@ -260,7 +266,8 @@
     {
       "id": "q26", "theme": {"fr": "Panneaux", "nl": "Verkeersborden"}, "sous_theme": "obligation",
       "gravite": "ordinaire", "degre": null, "ref_legale": "AR 01/12/1975, signaux D1", "region_scope": "ALL",
-      "media": {"type": "image", "brief": "Signal D1 : disque bleu portant une flèche blanche dirigée vers la droite, placé avant un carrefour.", "alt_fr": "Disque bleu à flèche blanche vers la droite", "alt_nl": "Blauwe schijf met witte pijl naar rechts"},
+      "media": null,
+      "signs": ["D1"],
       "fr": {
         "stem": "Ce signal est placé avant le carrefour. Vous vouliez continuer tout droit.",
         "opts": ["Vous devez tourner à droite", "Vous pouvez continuer tout droit, la flèche est indicative", "Vous devez céder le passage puis continuer tout droit"],

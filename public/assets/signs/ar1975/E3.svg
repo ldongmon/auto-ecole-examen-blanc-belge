@@ -1,0 +1,9 @@
+<!-- E3 — Arrêt et stationnement interdits. Disque bleu cerclé de rouge, deux barres rouges croisées.
+     Couleurs reprises de ../palette.json (blue, red, white). Aucun <text>, aucun effet. -->
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Panneau E3 : arrêt et stationnement interdits">
+  <circle cx="50" cy="50" r="45" fill="#063971" />
+  <circle cx="50" cy="50" r="38" fill="#ffffff" />
+  <circle cx="50" cy="50" r="45" fill="none" stroke="#cc0605" stroke-width="7" />
+  <line x1="20" y1="80" x2="80" y2="20" stroke="#cc0605" stroke-width="9" />
+  <line x1="20" y1="20" x2="80" y2="80" stroke="#cc0605" stroke-width="9" />
+</svg>

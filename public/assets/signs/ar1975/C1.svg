@@ -1,0 +1,7 @@
+<!-- C1 — Sens interdit à tout conducteur. Disque rouge, barre blanche horizontale.
+     Couleurs reprises de ../palette.json (red, white). Aucun <text>, aucun effet. -->
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Panneau C1 : sens interdit à tout conducteur">
+  <circle cx="50" cy="50" r="45" fill="#cc0605" />
+  <circle cx="50" cy="50" r="38" fill="#ffffff" />
+  <rect x="18" y="43" width="64" height="14" fill="#cc0605" />
+</svg>

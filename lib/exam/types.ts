@@ -42,6 +42,13 @@ export interface Question {
   ref_legale?: string;
   region_scope: RegionScope;
   media: QuestionMedia | null;
+  /**
+   * Codes de panneaux réglementaires illustrant la question (résolus par
+   * lib/signs/resolveSign.ts, jamais un chemin de fichier en dur). Distinct
+   * de `media`, qui reste réservé aux scènes de circulation à produire plus
+   * tard (voir docs/BACKLOG-VISUELS.md).
+   */
+  signs?: string[];
   fr: QuestionContent;
   nl: QuestionContent;
   tts: { fr: string; nl: string };

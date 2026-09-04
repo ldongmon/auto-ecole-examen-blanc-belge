@@ -324,10 +324,16 @@ h1 {
   border-color: var(--accent);
 }
 
+.question-visual-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 0 0 18px;
+}
+
 .question-visual {
   width: 140px;
   max-width: 40%;
-  margin: 0 auto 18px;
   background: var(--surface);
   border-radius: 12px;
   padding: 14px;
