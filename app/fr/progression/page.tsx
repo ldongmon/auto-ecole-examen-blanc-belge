@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { aggregateThemes, clearHistory, loadHistory, type HistoryEntry } from "@/lib/exam/progress";
 import { REGION_LABEL } from "@/lib/exam/regions";
+import ProgressRing from "@/components/progress/ProgressRing";
+import BelgiumMotif from "@/components/progress/BelgiumMotif";
 
 const MODE_LABEL = { entrainement: "Entraînement", examen: "Examen blanc" } as const;
 
@@ -13,6 +15,10 @@ function formatDate(iso: string): string {
   } catch {
     return iso;
   }
+}
+
+function percentOf(h: HistoryEntry): number {
+  return Math.round((h.score / h.total) * 100);
 }
 
 export default function ProgressionPage() {
@@ -49,30 +55,106 @@ export default function ProgressionPage() {
     );
   }
 
-  const percents = history.map((h) => Math.round((h.score / h.total) * 100));
+  const percents = history.map(percentOf);
   const best = Math.max(...percents);
   const average = Math.round(percents.reduce((a, b) => a + b, 0) / percents.length);
-  const weakThemes = aggregateThemes(history).filter((t) => t.percent < 80);
+  const themeStats = aggregateThemes(history);
+  const weakThemes = themeStats.filter((t) => t.percent < 80);
+  const entrainements = history.filter((h) => h.mode === "entrainement");
+  const examens = history.filter((h) => h.mode === "examen");
+  const last = history[history.length - 1];
+  const lastPercent = percentOf(last);
 
   return (
-    <main className="wrap">
-      <div className="card progression-page">
-        <p className="kicker">Ma progression</p>
-        <h1>{history.length} session{history.length > 1 ? "s" : ""} enregistrée{history.length > 1 ? "s" : ""}</h1>
+    <main className="dashboard-page">
+      <section className="dashboard-hero">
+        <BelgiumMotif />
+        <div className="dashboard-hero-inner">
+          <div className="dashboard-flag" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </div>
+          <p className="dashboard-eyebrow">Permis B — Tableau de bord</p>
+          <h1>Ta progression, sur cet appareil</h1>
+
+          <div className="dashboard-hero-stats">
+            <ProgressRing percent={average} label="score moyen" />
+            <div className="dashboard-hero-figures">
+              <div>
+                <span className="fig-value">{best}%</span>
+                <span className="fig-label">Meilleur score</span>
+              </div>
+              <div>
+                <span className="fig-value">{history.length}</span>
+                <span className="fig-label">Session{history.length > 1 ? "s" : ""} au total</span>
+              </div>
+              <div>
+                <span className="fig-value">{themeStats.length}</span>
+                <span className="fig-label">Chapitres suivis</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="mode-pills">
+            <span className="mode-pill training">● {entrainements.length} entraînement{entrainements.length > 1 ? "s" : ""}</span>
+            <span className="mode-pill exam">● {examens.length} examen{examens.length > 1 ? "s" : ""} blanc{examens.length > 1 ? "s" : ""}</span>
+          </div>
+        </div>
+      </section>
+
+      <div className="wrap dashboard-body">
         <p className="progression-note">
-          Cette progression est propre à cet appareil et ce navigateur — elle n&apos;est pas sauvegardée en
-          ligne et disparaît si tu vides tes données de navigation.
+          Propre à cet appareil et ce navigateur — pas sauvegardé en ligne, disparaît si tu vides tes données
+          de navigation.
         </p>
 
-        <div className="stat-row">
-          <div className="stat-box">
-            <span className="stat-value">{best}%</span>
-            <span className="stat-label">Meilleur score</span>
+        <div className="dashboard-cards">
+          <div className="dashboard-card">
+            <span className="dashboard-card-icon" aria-hidden="true">📘</span>
+            <h3>Mes chapitres</h3>
+            <p className="dashboard-card-big">{themeStats.length - weakThemes.length}/{themeStats.length}</p>
+            <p className="dashboard-card-detail">chapitres à 80 % ou plus</p>
           </div>
-          <div className="stat-box">
-            <span className="stat-value">{average}%</span>
-            <span className="stat-label">Score moyen</span>
+          <div className="dashboard-card">
+            <span className="dashboard-card-icon" aria-hidden="true">🎯</span>
+            <h3>Mes entraînements</h3>
+            <p className="dashboard-card-big">{entrainements.length}</p>
+            <p className="dashboard-card-detail">
+              {entrainements.length > 0
+                ? `dernier : ${percentOf(entrainements[entrainements.length - 1])}%`
+                : "aucun pour l'instant"}
+            </p>
           </div>
+          <div className="dashboard-card">
+            <span className="dashboard-card-icon" aria-hidden="true">⏱️</span>
+            <h3>Mes examens blancs</h3>
+            <p className="dashboard-card-big">{examens.length}</p>
+            <p className="dashboard-card-detail">
+              {examens.length > 0
+                ? `dernier : ${percentOf(examens[examens.length - 1])}% — ${
+                    examens[examens.length - 1].passed ? "réussi" : "échec"
+                  }`
+                : "aucun pour l'instant"}
+            </p>
+          </div>
+        </div>
+
+        <div className="last-session-card">
+          <h3>Dernière session</h3>
+          <p>
+            {MODE_LABEL[last.mode]} · {REGION_LABEL[last.region]} · {formatDate(last.date)} —{" "}
+            <strong>{last.score}/{last.total} ({lastPercent}%)</strong>
+          </p>
+          <p className="last-session-msg">
+            {last.mode === "examen"
+              ? last.passed
+                ? "Réussi — continue sur cette lancée."
+                : "Pas encore la bonne formule : regarde les chapitres à retravailler ci-dessous."
+              : lastPercent >= 80
+                ? "Bon entraînement — tu peux tenter un examen blanc complet."
+                : "Encore un peu d'entraînement avant l'examen blanc."}
+          </p>
         </div>
 
         {weakThemes.length > 0 && (
@@ -98,9 +180,10 @@ export default function ProgressionPage() {
               .map((h, i) => (
                 <li key={i}>
                   <span>{formatDate(h.date)}</span>
-                  <span>
-                    {MODE_LABEL[h.mode]} · {REGION_LABEL[h.region]}
+                  <span className={"mode-pill small " + (h.mode === "entrainement" ? "training" : "exam")}>
+                    {MODE_LABEL[h.mode]}
                   </span>
+                  <span>{REGION_LABEL[h.region]}</span>
                   <span className={h.passed ? "history-score pass" : "history-score"}>
                     {h.score}/{h.total}
                   </span>
